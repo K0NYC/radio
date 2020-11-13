@@ -19,7 +19,7 @@ FRS:
 
 `rtl_fm -M fm -f 462.5625M -l 75 -g 38.6 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
 
-`rtl_fm -M fm -f 462.5500M:467.7250M:125K -l 160 -g 38.6 -p 43 -s 30K - | aplay -r 32000 -f S16_LE -t raw -c 1`
+`rtl_fm -M fm -f 462.5500M:467.7250M:125K -l 90 -g 28.0 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
 
 Weather:
 
