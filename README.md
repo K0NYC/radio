@@ -1,8 +1,8 @@
 # radio
 
 Bluethooth:
-https://www.linux-magazine.com/Issues/2017/197/Command-Line-bluetoothctl
-Device 3C:C2:01:91:13:A2 TAOTRONICS SoundSurge 46
+
+`Device 3C:C2:01:91:13:A2 TAOTRONICS SoundSurge 46`
 `bluetoothctl disconnect`
 `bluetoothctl devices`
 `bluetoothctl connect 3C:C2:01:91:13:A2`
@@ -32,8 +32,6 @@ Restart GUI:
 Supported gain values (29): 0.0 0.9 1.4 2.7 3.7 7.7 8.7 12.5 14.4 15.7 16.6 19.7 20.7 22.9 25.4 28.0 29.7 32.8 33.8 36.4 37.2 38.6 40.2 42.1 43.4 43.9 44.5 48.0 49.6`
 `rtl_test -p` to find out offset in ppm
 
-
-https://medium.com/@luigifcruz/listening-live-fm-radio-over-the-network-with-rtl-sdr-2349c5abe878
 RTL SDR frequency correction: https://davidnelson.me/?p=371
 
 Camera rotation:
