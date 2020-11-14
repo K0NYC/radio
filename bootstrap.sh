@@ -2,7 +2,7 @@
 
 HOME_DIR=$1
 
-apt install -y ssh xrdp vim git librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmake sox audacity
+apt install -y vim git libusb-1.0-0-dev librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmake sox audacity ssh xrdp
 
 mkdir ${HOME_DIR}/gits
 cd ${HOME_DIR}/gits
