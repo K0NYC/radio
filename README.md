@@ -9,7 +9,7 @@ Bluethooth:
 
 FM Radio:
 
-`rtl_fm -M wbfm -f 104.3M -p 43 | play -r 32k -t raw -e s -b 16 -c 1 -V1 -`
+`rtl_fm -M wbfm -f 104.3M -p 43 -E wav |  play -t wav -v 5 -`
 
 Public Services:
 
@@ -17,20 +17,21 @@ Public Services:
 
 FRS:
 
-`rtl_fm -M fm -f 462.5625M -l 75 -g 38.6 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
+`rtl_fm -M fm -f 462.5625M -l 75 -g 38.6 -p 43 -s 30K - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
-`rtl_fm -M fm -f 462.5500M:467.7250M:125K -l 90 -g 28.0 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
+`rtl_fm -M fm -f 462.5500M:467.7250M:125K -l 90 -g 28.0 -p 43 -s 30K - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
 Weather:
 
-`rtl_fm -f 162.400M -f 162.425M -f 162.450M -f 162.475M -f 162.500M -f 162.525M -f 162.550M -l 160 -g 38.6 -p 43 -s 30K - | aplay -r 32000 -f S16_LE -t raw -c 1`
+`rtl_fm -f 162.400M -f 162.425M -f 162.450M -f 162.475M -f 162.500M -f 162.525M -f 162.550M -l 160 -g 38.6 -p 43 -s 30K - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
-`rtl_fm -f 162.400M:162.550M:25K -l 160 -g 38.6 -p 43 -s 30K - | aplay -r 32000 -f S16_LE -t raw -c 1`
+`rtl_fm -f 162.400M:162.550M:25K -l 160 -g 38.6 -p 43 - |  play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
-`rtl_fm -f 162.550M -l 60 -g 28 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
+`rtl_fm -f 162.550M -l 60 -g 28 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
 Ham 2m/70cm calling frequencies:
-`rtl_fm -M fm -f 146.520M -f 446M -l 100 -g 38.6 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
+
+`rtl_fm -M fm -f 146.520M -f 446M -l 100 -g 38.6 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
 Restart GUI:
 `systemctl restart gdm`
