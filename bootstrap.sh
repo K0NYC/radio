@@ -2,7 +2,7 @@
 
 HOME_DIR=$1
 
-apt install -y vim git libusb-1.0-0-dev librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmake sox audacity ssh xrdp
+apt install -y vim git libusb-1.0-0-dev librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmak libsndfile1-dev libliquid-dev sox audacity ssh xrdp
 
 mkdir ${HOME_DIR}/gits
 cd ${HOME_DIR}/gits
@@ -81,4 +81,13 @@ make
 sudo make install
 sudo ldconfig
 # should now show RTL-SDR device if connected
-SoapySDRUtil --info 
+SoapySDRUtil --info
+
+# Install Deinvert
+cd ${HOME_DIR}/gits/
+git clone https://github.com/windytan/deinvert.git
+cd deinvert/
+./autogen.sh
+./configure
+make
+ldconfig
