@@ -1,11 +1,9 @@
 #!/bin/bash
 
-HOME_DIR=$1
-
 apt install -y vim git libusb-1.0-0-dev librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmak libsndfile1-dev libliquid-dev sox audacity ssh xrdp
 
-mkdir ${HOME_DIR}/gits
-cd ${HOME_DIR}/gits
+mkdir $HOME/gits
+cd $HOME/gits
 
 # Install RTL-SDR
 git clone https://github.com/keenerd/rtl-sdr
@@ -27,7 +25,7 @@ blacklist dvb_core" \
 echo "dtparam=audio=on" >> /boot/firmware/usercfg.txt
 
 # Build and install SoapySDR
-cd ${HOME_DIR}/gits/
+cd $HOME/gits/
 git clone https://github.com/pothosware/SoapySDR.git
 cd SoapySDR
 mkdir build
@@ -39,7 +37,7 @@ ldconfig
 SoapySDRUtil --info
 
 #Build and install liquid-dsp
-cd ${HOME_DIR}/gits/
+cd $HOME/gits/
 git clone https://github.com/jgaeddert/liquid-dsp
 cd liquid-dsp
 ./bootstrap.sh
@@ -49,7 +47,7 @@ make install
 ldconfig
 
 # Build static wxWidgets
-cd ${HOME_DIR}/Downloads/
+cd $HOME/Downloads/
 wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxWidgets-3.1.4.tar.bz2
 tar -xvjf wxWidgets-3.1.4.tar.bz2
 cd wxWidgets-3.1.4/
@@ -59,7 +57,7 @@ mkdir -p ~/Develop/wxWidgets-staticlib
 make -j4 && make install
 
 # Build CubicSDR
-cd ${HOME_DIR}/gits/
+cd $HOME/gits/
 git clone https://github.com/cjcliffe/CubicSDR.git
 cd CubicSDR
 mkdir build
@@ -71,7 +69,7 @@ cd ..
 make install
 
 # SoapyRTLSDR
-cd ${HOME_DIR}/gits/
+cd $HOME/gits/
 git clone https://github.com/pothosware/SoapyRTLSDR.git
 cd SoapyRTLSDR
 mkdir build
@@ -84,7 +82,7 @@ sudo ldconfig
 SoapySDRUtil --info
 
 # Install Deinvert
-cd ${HOME_DIR}/gits/
+cd $HOME/gits/
 git clone https://github.com/windytan/deinvert.git
 cd deinvert/
 ./autogen.sh
