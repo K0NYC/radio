@@ -9,7 +9,7 @@ Bluethooth:
 
 FM Radio:
 
-`rtl_fm -M wbfm -f 104.3M -p 43 -E wav |  play -t wav -v 5 -`
+`rtl_fm -M wbfm -f 104.3M -p 43 -E wav |  play -t wav -`
 
 Public Services:
 
