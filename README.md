@@ -33,6 +33,10 @@ Ham 2m/70cm calling frequencies:
 
 `rtl_fm -M fm -f 146.520M -f 446M -l 100 -g 38.6 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
+Deinvert EL radio:
+
+`./deinvert-master/src/deinvert -i recording-3.wav -o recording-converted-3.wav  -f 11000 -p 6`
+
 Restart GUI:
 `systemctl restart gdm`
 
