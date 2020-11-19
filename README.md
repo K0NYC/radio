@@ -27,7 +27,7 @@ Weather:
 
 `rtl_fm -f 162.400M:162.550M:25K -l 160 -g 38.6 -p 43 - |  play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
-`rtl_fm -f 162.550M -l 60 -g 28 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
+`rtl_fm -f 162.550M -l 60 -p 43 -E wav | play -t wav -`
 
 Ham 2m/70cm calling frequencies:
 
