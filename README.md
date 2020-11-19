@@ -13,7 +13,7 @@ FM Radio:
 
 Public Services:
 
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -f 477.01250M -f 476.41250M -f 476.98750M -l 95 -g 40.2 -p 43 -s 30K - | play -r 30k -t raw -e s -b 16 -c 1 -V1 -`
+`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -f 477.01250M -f 476.41250M -f 476.98750M -l 95 -p 43 -E wav | play -t wav -`
 
 FRS:
 
