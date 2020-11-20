@@ -14,6 +14,7 @@ FM Radio:
 Public Services:
 
 `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -f 477.01250M -f 476.41250M -f 476.98750M -l 96 -p 43 -E wav | play -t wav -`
+RPi1 - `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -f 477.01250M -f 476.41250M -f 476.98750M -l 80 -p 43 -g 28.0 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - police.wav sinc 300-3000 gain 9`
 
 FRS:
 
@@ -28,6 +29,8 @@ Weather:
 `rtl_fm -f 162.400M:162.550M:25K -l 160 -g 38.6 -p 43 - |  play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
 `rtl_fm -f 162.550M -l 60 -p 43 -E wav | play -t wav -`
+
+RPi1 - `rtl_fm -f 162.550M -l 60 -p 43 -g 28 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - record.wav sinc 300-3000 gain 9`
 
 Ham 2m/70cm calling frequencies:
 
