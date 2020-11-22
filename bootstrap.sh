@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install -y vim git libusb-1.0-0-dev librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmake libsndfile1-dev libliquid-dev sox audacity ssh xrdp
+apt install -y vim git libusb-1.0-0-dev librtlsdr-dev libpulse-dev libgtk-3-dev freeglut3 freeglut3-dev automake cmake libsndfile1-dev libliquid-dev libsox-fmt-all sox audacity ssh xrdp
 
 mkdir $HOME/gits
 cd $HOME/gits
