@@ -1,0 +1,11 @@
+RPi 1
+
+Play: rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -g 28 -p 43 -E wav | play -t wav -
+
+
+Record: rtl_fm -M fm -f 476.51250M -l 80 -g 28 -p 43 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - police.mp3 sinc 300-3000 gain 9
+
+
+RPi 4:
+
+
