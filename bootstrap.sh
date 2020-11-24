@@ -11,7 +11,7 @@ cd rtl-sdr
 mkdir build
 cd build
 cmake -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON ../
-make install
+sudo make install
 ldconfig
 
 echo "blacklist dvb_usb_rtl28xxu
@@ -31,8 +31,8 @@ cd SoapySDR
 mkdir build
 cd build
 cmake ../ -DCMAKE_BUILD_TYPE=Release
-make -j4
-make install
+sudo make -j4
+sudo make install
 ldconfig
 SoapySDRUtil --info
 
@@ -42,8 +42,8 @@ git clone https://github.com/jgaeddert/liquid-dsp
 cd liquid-dsp
 ./bootstrap.sh
 CFLAGS="-march=native -O3" ./configure --enable-fftoverride 
-make -j4
-make install
+sudo make -j4
+sudo make install
 ldconfig
 
 # Build static wxWidgets
@@ -54,7 +54,7 @@ cd wxWidgets-3.1.4/
 mkdir -p ~/Develop/wxWidgets-staticlib
 ./autogen.sh
 ./configure --with-opengl --disable-shared --enable-monolithic --with-libjpeg --with-libtiff --with-libpng --with-zlib --disable-sdltest --enable-unicode --enable-display --enable-propgrid --disable-webkit --disable-webview --disable-webviewwebkit --prefix=`echo ~/Develop/wxWidgets-staticlib` CXXFLAGS="-std=c++0x"
-make -j4 && make install
+sudo make -j4 && sudo make install
 
 # Build CubicSDR
 cd $HOME/gits/
@@ -63,10 +63,10 @@ cd CubicSDR
 mkdir build
 cd build
 cmake ../ -DCMAKE_BUILD_TYPE=Release -DwxWidgets_CONFIG_EXECUTABLE=~/Develop/wxWidgets-staticlib/bin/wx-config
-make
+sudo make
 cd x64/
 cd ..
-make install
+sudo make install
 
 # SoapyRTLSDR
 cd $HOME/gits/
@@ -75,7 +75,7 @@ cd SoapyRTLSDR
 mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
-make
+sudo make
 sudo make install
 sudo ldconfig
 # should now show RTL-SDR device if connected
@@ -87,5 +87,5 @@ git clone https://github.com/windytan/deinvert.git
 cd deinvert/
 ./autogen.sh
 ./configure
-make
+sudo make
 ldconfig
