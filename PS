@@ -22,3 +22,5 @@ RPi 4:
 `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | sox -t wav - -t wav - sinc 400-3000 | lame - file.mp3`
 
 `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | play -t wav - sinc 300-3000 | rec -V3 -c1 -r 24k -t wav record.wav  silence 1 0.1 1% 1 2.0 1% : newfile : restart`
+
+`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | lame - - | play -V3 -t mp3 - sinc 400-3000 | rec -V3 -c1 -r 24k -t mp3 record.mp3 silence 1 0.1 1% 1 2.0 1% : newfile : restart`
