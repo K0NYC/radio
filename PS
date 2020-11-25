@@ -1,9 +1,11 @@
 RPi 1
 
-Play: rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -g 28 -p 43 -E wav | play -t wav -
+Play: `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -g 28 -p 43 -E wav | play -t wav -`
 
 
-Record all to mp3: rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -g 28 -p 43 -E wav - | lame - police.mp3
+Record all to mp3: `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -g 28 -p 43 -E wav - | lame - police.mp3`
+
+Play in mp3 format: `rtl_fm -M fm -f 476.51250M -l 80 -g 28 -p 43 -E wav - | lame - - | play -t mp3 -`
 
 
 RPi 4:
