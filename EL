@@ -1,0 +1,1 @@
+rtl_fm -M fm -f $FREQ -l 85 -d 0 - | deinvert -r 24000 -p 6 | play -r 24k -c 1 -t .s16 - sinc 400-3000
