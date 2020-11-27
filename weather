@@ -1,9 +1,16 @@
 Weather:
 
-`rtl_fm -f 162.400M -f 162.425M -f 162.450M -f 162.475M -f 162.500M -f 162.525M -f 162.550M -l 160 -g 38.6 -p 43 -s 30K - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
+`rtl_fm -f 162.400M -f 162.425M -f 162.450M -f 162.475M -f 162.500M -f 162.525M -f 162.550M -l 80 -E wav -d 0 -s 30k | play -t wav - sinc 300-2800`
 
-`rtl_fm -f 162.400M:162.550M:25K -l 160 -g 38.6 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
+`rtl_fm -f 162.400M:162.550M:25K -l 80 -g 38.6 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
+`rtl_fm -f 162.400M:162.550M:25K -l 60 -E wav -d 0 -s 30k | play -t wav - sinc 300-2800`
 
-RPi1 - `rtl_fm -f 162.550M -l 60 -p 43 -g 28 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - record.wav sinc 300-3000 gain 9`
+RPi1 
 
-RPi4 - `rtl_fm -M fm -f 162.550M -E wav -d 0 -s 30k | play -t wav - sinc 300-2800`
+`rtl_fm -f 162.550M -l 60 -p 43 -g 28 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - record.wav sinc 300-3000 gain 9`
+`rtl_fm -f 162.400M:162.550M:25K -l 80 -g 38.6 -p 43 - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
+
+RPi4
+
+`rtl_fm -f 162.550M -E wav -d 0 -s 30k | play -t wav - sinc 300-2800`
+`rtl_fm -f 162.400M -f 162.425M -f 162.450M -f 162.475M -f 162.500M -f 162.525M -f 162.550M -l 80 -E wav -d 0 -s 30k | play -t wav - sinc 300-2800`
