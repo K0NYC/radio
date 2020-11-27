@@ -11,14 +11,6 @@ FM Radio:
 
 `rtl_fm -M wbfm -f 104.3M -p 43 -E wav |  play -t wav -`
 
-Public Services:
-
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -f 477.01250M -f 476.41250M -f 476.98750M -l 96 -p 43 -E wav | play -t wav -`
-
-  RPi1 - `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -f 477.01250M -f 476.41250M -f 476.98750M -l 80 -p 43 -g 28.0 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - police.wav sinc 300-3000 gain 9`
-
-  Record to MP3:
-  `rtl_fm -M fm -f 476.51250M -l 95 -p 43 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - police.mp3 sinc 300-3000 gain 9`
 
 FRS:
 
@@ -26,13 +18,6 @@ FRS:
 
 `rtl_fm -M fm -f 462.5500M:467.7250M:125K -l 90 -g 28.0 -p 43 -s 30K - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
 
-Weather:
-
-`rtl_fm -f 162.400M -f 162.425M -f 162.450M -f 162.475M -f 162.500M -f 162.525M -f 162.550M -l 160 -g 38.6 -p 43 -s 30K - | play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
-
-`rtl_fm -f 162.400M:162.550M:25K -l 160 -g 38.6 -p 43 - |  play -r 24k -t raw -e s -b 16 -c 1 -V1 -v 5 -`
-
-`rtl_fm -f 162.550M -l 60 -p 43 -E wav | play -t wav -`
 
 RPi1 - `rtl_fm -f 162.550M -l 60 -p 43 -g 28 | sox -r 24k -e signed -b 16 -c 1 -V1 -t raw - record.wav sinc 300-3000 gain 9`
 
