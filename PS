@@ -8,21 +8,22 @@ Record all to mp3:
 
 `rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -g 28 -p 43 -E wav - | lame - file.mp3`
 
-Play in mp3 format: 
-
-`rtl_fm -M fm -f 476.51250M -l 80 -g 28 -p 43 -E wav - | lame - - | play -t mp3 -`
-
-
 RPi 4:
 
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -l 82 -E wav -d 0 | play -t wav - sinc 300-3000`
+`rtl_fm -f 476.51250M -f 476.46250M -l 82 -E wav -d 0 | play -t wav - sinc 300-3000`
 
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -E wav -d 0 - | lame - - | play -V4 -t mp3 - sinc 400-3000`
+`rtl_fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 80 -E wav -d 0 - | lame - - | play -V4 -t mp3 - sinc 400-3000`
 
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | sox -t wav - -t wav - sinc 400-3000 | lame - file.mp3`
+Record contigious to mp3 without listening:
 
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | play -t wav - sinc 300-3000 | rec -V3 -c1 -r 24k -t wav record.wav  silence 1 0.1 1% 1 2.0 1% : newfile : restart`
+`rtl_fm -f 476.51250M -l 85 -d 0 - | sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 precincts-62-68.mp3 sinc 400-3000`
 
-`rtl_fm -M fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | lame - - | play -V3 -t mp3 - sinc 400-3000 | rec -V3 -c1 -r 24k -t mp3 record.mp3 silence 1 0.1 1% 1 2.0 1% : newfile : restart`
 
-`rtl_fm -M fm -f 476.51250M -l 90 -E wav -d 0 - | lame - - | sox -V3 -c1 -r 24k -t mp3 - record.mp3 sinc 400-3000 silence 1 0.1 1% 1 2.0 1% : newfile : restart`
+
+`rtl_fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | play -t wav - sinc 300-3000 | rec -V3 -c1 -r 24k -t wav record.wav  silence 1 0.1 1% 1 2.0 1% : newfile : restart`
+
+`rtl_fm -f 476.51250M -f 476.46250M -f 476.93750M -f 476.86250M -l 85 -E wav -d 0 - | lame - - | play -V3 -t mp3 - sinc 400-3000 | rec -V3 -c1 -r 24k -t mp3 record.mp3 silence 1 0.1 1% 1 2.0 1% : newfile : restart`
+
+Record without listening
+
+`rtl_fm -f 476.51250M -l 85 -d 0 - | sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 precincts-62-68-.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart`
