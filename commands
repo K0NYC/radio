@@ -1,8 +1,12 @@
 RPi 4:
 
-Play:
+Play local:
 
 `rtl_fm -f ${frequency}M -l 85 -E wav -d 0 | play -t wav - sinc 300-3000`
+
+Play and stream to network:
+
+`rtl_fm -f ${frequency}M -d 0 -s 30k | sox -t raw -r 30k -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000  | cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'`
 
 Record contigious to mp3 without listening:
 
