@@ -1,0 +1,17 @@
+RPi 4:
+
+Play:
+
+`rtl_fm -f ${frequency}M -l 85 -E wav -d 0 | play -t wav - sinc 300-3000`
+
+Record contigious to mp3 without listening:
+
+`rtl_fm -f ${frequency}M -l 85 -d 0 - | sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000`
+
+Record to mp3 while listening, can use only one device:
+
+`rtl_fm -f ${frequency}M -l 85 -d 0 - | play -t raw -r 24k -e s -b 16 -c 1 -V3 - | rec -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart`
+
+Record sound only to mp3 without listening:
+
+`rtl_fm -f ${frequency}M -l 85 -d 0 - | sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart`
