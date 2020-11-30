@@ -1,10 +1,10 @@
 RPi 4:
 
-Play local:
+Play local (-play):
 
 `rtl_fm -f ${frequency}M -l 85 -E wav -d 0 | play -t wav - sinc 300-3000`
 
-Play and stream to network:
+Play and stream to network (-stream):
 
 `rtl_fm -f ${frequency}M -d 0 -s 30k | sox -t raw -r 30k -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000  | cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'`
 
@@ -16,6 +16,10 @@ Sound activated recording to mp3 while listening, can use only one device:
 
 `rtl_fm -f ${frequency}M -l 85 -d 0 - | play -t raw -r 24k -e s -b 16 -c 1 -V3 - | rec -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart`
 
-Sound activated recording to mp3 without listening:
+Sound activated recording to mp3 without listening (-sar):
 
 `rtl_fm -f ${frequency}M -l 85 -d 0 - | sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart`
+
+Upload to S3 (-upload):
+
+``
