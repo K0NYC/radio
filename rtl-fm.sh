@@ -8,15 +8,15 @@ eval set -- "$TEMP"
 
 MODE=fm
 FREQUENCY=
-SQUELCH=
+SQUELCH=0
 GAIN=0
 ERROR=0
-SAMPLE_RATE=
+SAMPLE_RATE="24k"
 DEVICE=0
-PLAY=
-STREAM=
-SAR=
-PLAY_SAR=
+PLAY="play -t raw -r 24k -e s -b 16 -c 1 -V3 - sinc 400-3000"
+STREAM="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
+SAR="sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
+PLAY_SAR="play -t raw -r 24k -e s -b 16 -c 1 -V3 - | rec -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${filename}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
 FILE_PREFIX=
 
 while true; do
