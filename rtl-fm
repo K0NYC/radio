@@ -2,7 +2,7 @@
 
 usage() {
     printf "                                                                                 \n"
-    printf "  Usage: ./rtl-fm <rtl_fm options> actions                                        \n"
+    printf "  Usage: ./rtl-fm <rtl_fm options> actions                                       \n"
     printf "                                                                                 \n"
     printf "  rtl_fm options:                                                                \n"
     printf "    -f  frequency_to_tune_to [Hz]                                                \n"
