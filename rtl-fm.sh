@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "\n"
-    printf "Usage: ./rtl-fm rtl_fm options> actions \n"
-    printf "\n"
-    printf "  rtl_fm options:  \n"
+    printf "  \n"
+    printf "  Usage: ./rtl-fm rtl_fm options> actions \n"
+    printf "  \n"
+    printf "    rtl_fm options:  \n"
     printf "    -f  frequency_to_tune_to [Hz] \n"
     printf "        use multiple -f for scanning (requires squelch) \n"
     printf "        ranges supported, -f 118M:137M:25k \n"
@@ -17,8 +17,8 @@ usage() {
     printf "    [-g tuner_gain (default: automatic)] \n"
     printf "    [-l squelch_level (default: 0/off)] \n"
     printf "    [-p ppm_error (default: 0)]"
-    printf "\n"
-    printf "\n"
+    printf "  \n"
+    printf "  \n"
     printf "  Actions are: \n"
     printf "    --play                play to the local sound card, requires headphones \n"
     printf "    --stream              stream the sound to the network on port 8080 \n"
@@ -29,7 +29,6 @@ usage() {
     printf "                          must provide filename and use headphones, \n"
     printf "                          should not use another SDR dongle with --play option \n"
     printf "                          to not mix the sound and trigger recording \n"
-    printf "\n"
 }
 
 TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,sar:,play-sar: -n 'rtl-fm' -- "$@")
