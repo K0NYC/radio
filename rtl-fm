@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "  \n"
-    printf "  Usage: ./rtl-fm rtl_fm options> actions \n"
-    printf "  \n"
-    printf "    rtl_fm options:  \n"
+    printf "                                                                                 \n"
+    printf "  Usage: ./rtl-fm rtl_fm options> actions                                        \n"
+    printf "                                                                                 \n"
+    printf "  rtl_fm options:                                                                \n"
     printf "    -f  frequency_to_tune_to [Hz] \n"
     printf "        use multiple -f for scanning (requires squelch) \n"
     printf "        ranges supported, -f 118M:137M:25k \n"
@@ -17,18 +17,20 @@ usage() {
     printf "    [-g tuner_gain (default: automatic)] \n"
     printf "    [-l squelch_level (default: 0/off)] \n"
     printf "    [-p ppm_error (default: 0)]"
-    printf "  \n"
-    printf "  \n"
-    printf "  Actions are: \n"
-    printf "    --play                play to the local sound card, requires headphones \n"
-    printf "    --stream              stream the sound to the network on port 8080 \n"
-    printf "    --sar filename        sound activated recording to a local file, must provide filename, \n"
-    printf "                          starts with 'nohup' on background \n"
-    printf "    --play-sar filename   sound activated recording to a local file with \n"
-    printf "                          sound played to the local sound card, \n"
-    printf "                          must provide filename and use headphones, \n"
-    printf "                          should not use another SDR dongle with --play option \n"
-    printf "                          to not mix the sound and trigger recording \n"
+    printf "                                                                                 \n"
+    printf "                                                                                 \n"
+    printf "  Actions are:                                                                   \n"
+    printf "    --play                play to the local sound card, requires headphones      \n"
+    printf "    --stream              stream the sound to the network on port 8080           \n"
+    printf "    --sar filename        sound activated recording to a local file,             \n"
+    printf "                          must provide filename without extension,               \n"
+    printf "                          starts with 'nohup' on background                      \n"
+    printf "    --play-sar filename   sound activated recording to a local file with         \n"
+    printf "                          sound played to the local sound card,                  \n"
+    printf "                          must provide filename and use headphones,              \n"
+    printf "                          should not use another SDR dongle with --play option   \n"
+    printf "                          to not mix the sound and trigger recording             \n"
+    printf "                                                                                 \n"
 }
 
 TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,sar:,play-sar: -n 'rtl-fm' -- "$@")
@@ -42,6 +44,8 @@ PLAY=false
 STREAM=false
 SAR=false
 PLAY_SAR=false
+
+RECORDINGS_DIR="$HOME/recordings/"
 
 while true; do
   case "$1" in
@@ -75,7 +79,7 @@ fi
 PLAY_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - sinc 400-3000"
 CONVERT_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000"
 STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
-SAR_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
+SAR_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
 PLAY_SAR_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - | rec -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
 
 if [[ "$PLAY" = true ]]; then
