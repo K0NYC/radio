@@ -49,7 +49,7 @@ RECORDINGS_DIR="$HOME/recordings/"
 
 while true; do
   case "$1" in
-    -m ) MODE="$1 $2"; shift 2 ;;
+    -M ) MODE="$1 $2"; shift 2 ;;
     -f ) FREQUENCIES+="$1 $2 "; shift 2 ;;
     -l ) SQUELCH="$1 $2"; shift 2 ;;
     -g ) GAIN="$1 $2"; shift 2 ;;
