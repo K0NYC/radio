@@ -38,11 +38,6 @@ if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
 
 eval set -- "$TEMP"
 
-#MODE="fm"
-#FREQUENCIES=
-#SQUELCH=0
-#GAIN=0
-#PPM_ERROR=0
 SAMPLE_RATE=
 PLAY=false
 STREAM=false
