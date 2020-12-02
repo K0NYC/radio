@@ -2,7 +2,7 @@
 
 usage() {
     printf "\n"
-    printf "Usage: ./rtl-fm <rtl_fm options> actions \n"
+    printf "Usage: ./rtl-fm rtl_fm options> actions \n"
     printf "\n"
     printf "  rtl_fm options:  \n"
     printf "    -f  frequency_to_tune_to [Hz] \n"
@@ -21,9 +21,9 @@ usage() {
     printf "\n"
     printf "  Actions are: \n"
     printf "    --play                play to the local sound card, requires headphones \n"
-    printf "    --stream              stream the sound to the network on port 8080, \n"
-    printf "                          runs with 'nohup' on background \n"
-    printf "    --sar filename        sound activated recording to a local file, must provide filename \n"
+    printf "    --stream              stream the sound to the network on port 8080 \n"
+    printf "    --sar filename        sound activated recording to a local file, must provide filename, \n"
+    printf "                          starts with 'nohup' on background \n"
     printf "    --play-sar filename   sound activated recording to a local file with \n"
     printf "                          sound played to the local sound card, \n"
     printf "                          must provide filename and use headphones, \n"
@@ -32,20 +32,18 @@ usage() {
     printf "\n"
 }
 
-TEMP=$(getopt -o m:f:l:g:p:r:d:h -l play,stream,sar:,play-sar: -n 'rtl-fm' -- "$@")
+TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,sar:,play-sar: -n 'rtl-fm' -- "$@")
 
-if [ $? != 0 ]; then echo "Terminating..." >&2 ; exit 1 ; fi
+if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
 
 eval set -- "$TEMP"
 
-MODE="fm"
-FREQUENCY=
-SQUELCH=0
-GAIN=0
-PPM_ERROR=0
-SAMPLE_RATE="24k"
-DEVICE=0
-FILENAME=
+#MODE="fm"
+#FREQUENCIES=
+#SQUELCH=0
+#GAIN=0
+#PPM_ERROR=0
+SAMPLE_RATE=
 PLAY=false
 STREAM=false
 SAR=false
@@ -53,13 +51,13 @@ PLAY_SAR=false
 
 while true; do
   case "$1" in
-    -m ) MODE="$2"; shift 2 ;;
-    -f ) FREQUENCY="$2"; shift 2 ;;
-    -l ) SQUELCH="$2"; shift 2 ;;
-    -g ) GAIN="$2"; shift 2 ;;
-    -p ) PPM_ERROR="$2"; shift 2 ;;
-    -r ) SAMPLE_RATE="$2"; shift 2 ;;
-    -d ) DEVICE="$2"; shift 2 ;;
+    -m ) MODE="$1 $2"; shift 2 ;;
+    -f ) FREQUENCIES+="$1 $2 "; shift 2 ;;
+    -l ) SQUELCH="$1 $2"; shift 2 ;;
+    -g ) GAIN="$1 $2"; shift 2 ;;
+    -p ) PPM_ERROR="$1 $2"; shift 2 ;;
+    -s ) SAMPLE_RATE="$1 $2"; shift 2 ;;
+    -d ) DEVICE="$1 $2"; shift 2 ;;
     -h ) usage; exit 0 ;;
     --sar )
       SAR=true; FILENAME="$2"; shift 2 ;;
@@ -74,26 +72,27 @@ while true; do
   esac
 done
 
-RTL_FM_CMD="rtl_fm \
-  -M ${MODE} \
-  -f ${FREQUENCY} \
-  -l ${SQUELCH} \
-  -g ${GAIN} \
-  -p ${PPM_ERROR} \
-  -r ${SAMPLE_RATE} \
-  -d ${DEVICE}"
+RTL_FM_CMD="rtl_fm ${MODE} ${FREQUENCIES} ${SQUELCH} ${GAIN} ${PPM_ERROR} ${SAMPLE_RATE} ${DEVICE}"
 
-PLAY_CMD="play -t raw -r 24k -e s -b 16 -c 1 -V3 - sinc 400-3000"
-STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
-SAR_CMD="sox -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
-PLAY_SAR_CMD="play -t raw -r 24k -e s -b 16 -c 1 -V3 - | rec -t raw -r 24k -e s -b 16 -c 1 -V3 - -t mp3 ${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
-
-if [ "$PLAY" = true ]; then
-  echo "${RTL_FM_CMD} | ${PLAY_CMD}"
-elif [ "$STREAM" = true ]; then
-  echo "${RTL_FM_CMD} | ${STREAM_CMD}"
-elif [ "$SAR" = true ]; then
-  echo "${RTL_FM_CMD} | ${SAR_CMD}"
-elif [ "$PLAY_SAR" = true ]; then
-  echo "${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
+if [[ $SAMPLE_RATE ]]; then
+  SAMPLE_RATE_VALUE=$(echo "$SAMPLE_RATE" | cut -d " " -f 2)
 fi
+
+PLAY_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - sinc 400-3000"
+CONVERT_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000"
+STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
+SAR_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
+PLAY_SAR_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - | rec -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
+
+if [[ "$PLAY" = true ]]; then
+  cmd="${RTL_FM_CMD} | ${PLAY_CMD}"
+elif [[ "$STREAM" = true ]]; then
+  cmd="${RTL_FM_CMD} | ${CONVERT_CMD} | ${STREAM_CMD}"
+elif [[ "$SAR" = true ]]; then
+  cmd="nohup ${RTL_FM_CMD} | ${SAR_CMD}"
+elif [[ "$PLAY_SAR" = true ]]; then
+  cmd="${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
+fi
+
+echo "$cmd"
+eval "$cmd"
