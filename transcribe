@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+RECORDINGS_DIRECTORY="$HOME/recordings"
+FILE="${RECORDINGS_DIRECTORY}/@1"
+UPLOADS_BUCKET_NAME="radio-uploads"
+TRANSCRIPTIONS_BUCKET_NAME="radio-transcripts"
+MEDIA="s3://${UPLOADS_BUCKET_NAME}/${FILE}"
+
+AWS_COPY_CMD="aws s3 cp $FILE s3://${UPLOADS_BUCKET_NAME}"
+
+AWS_TRANSCRIBE_CMD="aws transcribe start-transcription-job \
+  --transcription-job-name $FILE \
+  --media-format mp3 \
+  --media MediaFileUri=$MEDIA \
+  --output-bucket-name $TRANSCRIPTIONS_BUCKET_NAME"
+
+eval "${AWS_COPY_CMD}" && "${AWS_TRANSCRIBE_CMD}"
