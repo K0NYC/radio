@@ -1,17 +1,30 @@
 #!/usr/bin/env bash
 
 RECORDINGS_DIRECTORY="$HOME/recordings"
-FILE="${RECORDINGS_DIRECTORY}/@1"
+FILENAME=$1
+FILENAME_WITH_PATH="${RECORDINGS_DIRECTORY}/${FILENAME}"
+TRANSCRIPTION_JOB_NAME=$(echo "${FILENAME}" | cut -d "." -f 1)
 UPLOADS_BUCKET_NAME="radio-uploads"
 TRANSCRIPTIONS_BUCKET_NAME="radio-transcripts"
-MEDIA="s3://${UPLOADS_BUCKET_NAME}/${FILE}"
+MEDIA_FILE_URI="s3://${UPLOADS_BUCKET_NAME}/${FILENAME}"
 
-AWS_COPY_CMD="aws s3 cp $FILE s3://${UPLOADS_BUCKET_NAME}"
-
+AWS_COPY_CMD="aws s3 cp $FILENAME_WITH_PATH s3://${UPLOADS_BUCKET_NAME}"
+AWS_LS_CMD="aws s3 ls s3://${UPLOADS_BUCKET_NAME}/${FILENAME}"
 AWS_TRANSCRIBE_CMD="aws transcribe start-transcription-job \
-  --transcription-job-name $FILE \
+  --transcription-job-name $TRANSCRIPTION_JOB_NAME \
+  --identify-language \
   --media-format mp3 \
-  --media MediaFileUri=$MEDIA \
+  --media MediaFileUri=$MEDIA_FILE_URI \
   --output-bucket-name $TRANSCRIPTIONS_BUCKET_NAME"
 
-eval "${AWS_COPY_CMD}" && "${AWS_TRANSCRIBE_CMD}"
+eval "${AWS_COPY_CMD}"
+
+while true; do
+  eval "$AWS_LS_CMD"
+  if [[ $? == 0 ]]; then
+    eval "$AWS_TRANSCRIBE_CMD"
+    break
+  else
+    sleep 3
+  fi
+done
