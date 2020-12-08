@@ -85,7 +85,7 @@ done
 RECORDINGS_DIR="$HOME/recordings/device-${DEVICE}"
 
 if [[ ! -d "$RECORDINGS_DIR" ]]; then
-  mkdir -r "$RECORDINGS_DIR"
+  mkdir -p "$RECORDINGS_DIR"
 fi
 
 RTL_FM_CMD="rtl_fm ${MODE} ${FREQUENCIES} ${SQUELCH} ${GAIN} ${PPM_ERROR} ${SAMPLE_RATE} ${DEVICE}"
