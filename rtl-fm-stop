@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+usage() {
+    printf "                                   \n"
+    printf "  Usage: rtl-fm-stop < device ID > \n"
+    printf "                                   \n"
+}
+
+while true; do
+  case "$1" in
+    -h ) usage; exit 0 ;;
+    * ) DEVICE_ID=$1 ; break ;;
+  esac
+done
+
+kill "$(ps -ef | agrep "rtl_fm;-d ${DEVICE_ID}" | grep -v grep | awk '{print $2}')"
+kill "$(ps -ef | agrep "inotifywait;device-${DEVICE_ID}" | grep -v grep  | awk '{print $2}')"
