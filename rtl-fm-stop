@@ -13,6 +13,14 @@ while true; do
   esac
 done
 
+rtl_fm_proc_id="$(ps -ef | agrep "rtl_fm;-d ${DEVICE_ID}" | grep -v grep | awk '{print $2}')"
+
+if [[ $rtl_fm_proc_id -gt 0 ]]; then
+  kill "$rtl_fm_proc_id"
+else 
+  echo "rtl_fm is not running"
+fi
+
 kill "$(ps -ef | agrep "rtl_fm;-d ${DEVICE_ID}" | grep -v grep | awk '{print $2}')"
 
 inotifywait_proc_id="$(ps -ef | agrep "inotifywait;device-${DEVICE_ID}" | grep -v grep  | awk '{print $2}')"
