@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "                                            \n"
-    printf "  Usage: rtl-fm-stop < device ID >          \n"
-    printf "                                            \n"
-    printf "  Stops rtl_fm and inotifywait if running   \n"
-    printf "                                            \n"
-    printf "                                            \n"
+    printf "                                                 \n"
+    printf "  Usage: rtl-fm-stop < device ID >               \n"
+    printf "                                                 \n"
+    printf "  Stops 'rtl_fm' and 'inotifywait' if running.   \n"
+    printf "  After stopping 'rtl_fm' it waits 3 seconds     \n"
+    printf "  to let 'inotifywait' to trigger 'transcribe'   \n"
+    printf "  for the last recorded file.                    \n"
+    printf "                                                 \n"
 }
 
 while true; do
@@ -28,6 +30,7 @@ fi
 inotifywait_proc_id="$(ps -ef | agrep "inotifywait;device-${DEVICE_ID}" | grep -v grep  | awk '{print $2}')"
 
 if [[ $inotifywait_proc_id -gt 0 ]]; then
+  sleep 3
   kill "$inotifywait_proc_id"
   echo "Stopped inotifywait process ID ${inotifywait_proc_id}"
 fi
