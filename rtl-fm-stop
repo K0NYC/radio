@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "                                   \n"
-    printf "  Usage: rtl-fm-stop < device ID > \n"
-    printf "                                   \n"
+    printf "                                            \n"
+    printf "  Usage: rtl-fm-stop < device ID >          \n"
+    printf "                                            \n"
+    printf "  Stops rtl_fm and inotifywait if running   \n"
+    printf "                                            \n"
+    printf "                                            \n"
 }
 
 while true; do
@@ -17,7 +20,8 @@ rtl_fm_proc_id="$(ps -ef | agrep "rtl_fm;-d ${DEVICE_ID}" | grep -v grep | awk '
 
 if [[ $rtl_fm_proc_id -gt 0 ]]; then
   kill "$rtl_fm_proc_id"
-else 
+  echo "Stopped rtl_fm process ID ${rtl_fm_proc_id}"
+else
   echo "rtl_fm is not running"
 fi
 
@@ -25,4 +29,5 @@ inotifywait_proc_id="$(ps -ef | agrep "inotifywait;device-${DEVICE_ID}" | grep -
 
 if [[ $inotifywait_proc_id -gt 0 ]]; then
   kill "$inotifywait_proc_id"
+  echo "Stopped inotifywait process ID ${inotifywait_proc_id}"
 fi
