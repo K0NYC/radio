@@ -41,6 +41,10 @@ usage() {
     printf "                          AWS Transcribe job. Can be used with '--sar' or        \n"
     printf "                          '--play-sar options only                               \n"
     printf "                                                                                 \n"
+    printf "  To stop 'rtl_fm' running on background or/and with '--transcribe' option       \n"
+    printf "      use 'rtl-fm-stop' script                                                   \n"
+    printf "                                                                                 \n"
+    printf "                                                                                 \n"
 }
 
 TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,transcribe,sar:,play-sar: -n 'rtl-fm' -- "$@")
@@ -49,6 +53,7 @@ if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
 
 eval set -- "$TEMP"
 
+DEVICE="-d 0"
 DEVICE_ID=0
 SAMPLE_RATE=
 PLAY=false
@@ -109,6 +114,10 @@ elif [[ "$SAR" = true ]]; then
   cmd="nohup ${RTL_FM_CMD} | ${SAR_CMD}"
 elif [[ "$PLAY_SAR" = true ]]; then
   cmd="${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
+fi
+
+if [[ "$TRANSCRIBE" = true ]]; then
+  eval "$TRANSCRIBE_CMD"
 fi
 
 echo "$cmd"
