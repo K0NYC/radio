@@ -14,4 +14,9 @@ while true; do
 done
 
 kill "$(ps -ef | agrep "rtl_fm;-d ${DEVICE_ID}" | grep -v grep | awk '{print $2}')"
-kill "$(ps -ef | agrep "inotifywait;device-${DEVICE_ID}" | grep -v grep  | awk '{print $2}')"
+
+inotifywait_proc_id="$(ps -ef | agrep "inotifywait;device-${DEVICE_ID}" | grep -v grep  | awk '{print $2}')"
+
+if [[ $inotifywait_proc_id -gt 0 ]]; then
+  kill "$inotifywait_proc_id"
+fi
