@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+usage() {
+    printf "                                \n"
+    printf "  Usage: transcribe <file name>.mp3 \n"
+    printf "                                \n"
+}
+
+while true; do
+  case "$1" in
+    -h ) usage; exit 0 ;;
+    * ) FILENAME=$1 ; break ;;
+  esac
+done
+
+if [[ $(echo "$FILENAME" | cut -d '.' -f 2) -ne 'mp3' ]]; then
+  exit 1
+fi
+
 RECORDINGS_DIRECTORY="$HOME/recordings"
 FILENAME=$1
 FILENAME_WITH_PATH="${RECORDINGS_DIRECTORY}/${FILENAME}"
