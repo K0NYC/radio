@@ -104,7 +104,7 @@ CONVERT_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 - s
 STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
 SAR_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}/${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
 PLAY_SAR_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - | rec -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}/${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
-TRANSCRIBE_CMD="transcribe ${RECORDINGS_DIR}"
+TRANSCRIBE_CMD="nohup transcribe ${RECORDINGS_DIR} &"
 
 if [[ "$PLAY" = true ]]; then
   cmd="${RTL_FM_CMD} | ${PLAY_CMD}"
@@ -116,9 +116,9 @@ elif [[ "$PLAY_SAR" = true ]]; then
   cmd="${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
 fi
 
+echo "$cmd"
+eval "$cmd"
+
 if [[ "$TRANSCRIBE" = true ]]; then
   eval "$TRANSCRIBE_CMD"
 fi
-
-echo "$cmd"
-eval "$cmd"
