@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "                                                                  \n"
-    printf "  Usage: transcribe --dir <directory name> --device <device ID>   \n"
-    printf "                                                                  \n"
+    printf "                                                                        \n"
+    printf "  Starts monitoring the provided directory for new mp3 files.           \n"
+    printf "  Once the new file created/closed it uploads the file to the AWS S3    \n"
+    printf "  bucket and creates a new AWS Transcribe job for that file.            \n"
+    printf "                                                                        \n"
+    printf "  The script will exit automatically after the 'rtl_fm' process         \n"
+    printf "  this run associates with exits.                                       \n"
+    printf "                                                                        \n"
+    printf "  Usage: transcribe --dir <directory name> --device <device ID>         \n"
+    printf "                                                                        \n"
 }
 
 TEMP=$(getopt -o h -l dir:,device: -n 'transcribe' -- "$@")
