@@ -1,124 +1,66 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "                                                                                 \n"
-    printf "  Usage: rtl-fm <rtl_fm options> actions                                         \n"
-    printf "                                                                                 \n"
-    printf "  rtl_fm options:                                                                \n"
-    printf "    -f  frequency_to_tune_to [Hz]                                                \n"
-    printf "        use multiple -f for scanning (requires squelch)                          \n"
-    printf "        ranges supported, -f 118M:137M:25k                                       \n"
-    printf "    [-M modulation (default: fm)]                                                \n"
-    printf "        fm, wbfm, raw, am, usb, lsb                                              \n"
-    printf "        wbfm == -M fm -s 170k -o 4 -A fast -r 32k -l 0 -E deemp                  \n"
-    printf "        raw mode outputs 2x16 bit IQ pairs                                       \n"
-    printf "    [-s sample_rate (default: 24k)]                                              \n"
-    printf "    [-d device_index (default: 0)]                                               \n"
-    printf "    [-g tuner_gain (default: automatic)]                                         \n"
-    printf "    [-l squelch_level (default: 0/off)]                                          \n"
-    printf "    [-p ppm_error (default: 0)]                                                  \n"
-    printf "                                                                                 \n"
-    printf "                                                                                 \n"
-    printf "  Actions are:                                                                   \n"
-    printf "    --play                play to the local sound card, requires headphones      \n"
-    printf "                                                                                 \n"
-    printf "    --stream              stream the sound to the network on port 8080           \n"
-    printf "                                                                                 \n"
-    printf "    --sar filename        sound activated recording to a local file,             \n"
-    printf "                          must provide filename without extension,               \n"
-    printf "                          starts with 'nohup' on background                      \n"
-    printf "                                                                                 \n"
-    printf "    --play-sar filename   sound activated recording to a local file with         \n"
-    printf "                          sound played to the local sound card,                  \n"
-    printf "                          must provide filename and use headphones,              \n"
-    printf "                          should not use another SDR dongle with --play option   \n"
-    printf "                          to not mix the sound and trigger recording             \n"
-    printf "                                                                                 \n"
-    printf "    --transcribe          starts an 'inotifywait' daemon that monitors the       \n"
-    printf "                          'recordings' directory for closed for write files      \n"
-    printf "                          created by 'sox' and once the new file created/closed  \n"
-    printf "                          it runs 'transcribe' shell script that creates an      \n"
-    printf "                          AWS Transcribe job. Can be used with '--sar' or        \n"
-    printf "                          '--play-sar options only                               \n"
-    printf "                                                                                 \n"
-    printf "  To stop 'rtl_fm' running on background or/and with '--transcribe' option       \n"
-    printf "      use 'rtl-fm-stop' script                                                   \n"
-    printf "                                                                                 \n"
-    printf "                                                                                 \n"
+    printf "                                                                  \n"
+    printf "  Usage: transcribe --dir <directory name> --device <device ID>   \n"
+    printf "                                                                  \n"
 }
 
-TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,transcribe,sar:,play-sar: -n 'rtl-fm' -- "$@")
+TEMP=$(getopt -o h -l dir:,device: -n 'transcribe' -- "$@")
 
 if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
 
 eval set -- "$TEMP"
 
-DEVICE="-d 0"
-DEVICE_ID=0
-SAMPLE_RATE=
-PLAY=false
-STREAM=false
-SAR=false
-PLAY_SAR=false
-TRANSCRIBE=false
-
 while true; do
   case "$1" in
-    -M ) MODE="$1 $2"; shift 2 ;;
-    -f ) FREQUENCIES+="$1 $2 "; shift 2 ;;
-    -l ) SQUELCH="$1 $2"; shift 2 ;;
-    -g ) GAIN="$1 $2"; shift 2 ;;
-    -p ) PPM_ERROR="$1 $2"; shift 2 ;;
-    -s ) SAMPLE_RATE="$1 $2"; shift 2 ;;
-    -d ) DEVICE="$1 $2"; DEVICE_ID="$2"; shift 2 ;;
+    --dir ) RECORDINGS_DIRECTORY=$2; shift 2 ;;
+    --device ) DEVICE_ID=$2; shift 2 ;;
     -h ) usage; exit 0 ;;
-    --sar )
-      SAR=true; FILENAME="$2"; shift 2 ;;
-    --play-sar )
-      PLAY_SAR=true; FILENAME="$2"; shift 2 ;;
-    --play )
-      PLAY=true; shift ;;
-    --stream )
-      STREAM=true; shift ;;
-    --transcribe )
-      TRANSCRIBE=true; shift ;;
-    -- ) shift; break ;;
     * ) break ;;
   esac
 done
 
-RECORDINGS_DIR="$HOME/recordings/device-${DEVICE_ID}"
+UPLOADS_BUCKET_NAME="radio-uploads"
+TRANSCRIPTIONS_BUCKET_NAME="radio-transcripts"
 
-if [[ ! -d "$RECORDINGS_DIR" ]]; then
-  mkdir -p "$RECORDINGS_DIR"
-fi
+function create_transcribe_job() {
+  FILENAME_WITH_PATH="${RECORDINGS_DIRECTORY}/$1"
+  TRANSCRIPTION_JOB_NAME=$(echo "${FILENAME}" | cut -d "." -f 1)
+  MEDIA_FILE_URI="s3://${UPLOADS_BUCKET_NAME}/${FILENAME}"
 
-RTL_FM_CMD="rtl_fm ${MODE} ${FREQUENCIES} ${SQUELCH} ${GAIN} ${PPM_ERROR} ${SAMPLE_RATE} ${DEVICE}"
+  AWS_COPY_CMD="aws s3 cp ${FILENAME_WITH_PATH} s3://${UPLOADS_BUCKET_NAME}"
+  AWS_LS_CMD="aws s3 ls s3://${UPLOADS_BUCKET_NAME}/${FILENAME}"
+  AWS_TRANSCRIBE_CMD="aws transcribe start-transcription-job \
+    --transcription-job-name ${TRANSCRIPTION_JOB_NAME} \
+    --identify-language \
+    --media-format mp3 \
+    --media MediaFileUri=${MEDIA_FILE_URI} \
+    --output-bucket-name ${TRANSCRIPTIONS_BUCKET_NAME}"
 
-if [[ $SAMPLE_RATE ]]; then
-  SAMPLE_RATE_VALUE=$(echo "$SAMPLE_RATE" | cut -d " " -f 2)
-fi
+  eval "${AWS_COPY_CMD}"
 
-PLAY_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - sinc 400-3000"
-CONVERT_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000"
-STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
-SAR_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}/${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
-PLAY_SAR_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - | rec -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}/${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
-TRANSCRIBE_CMD="nohup transcribe --dir ${RECORDINGS_DIR} --device ${DEVICE_ID} &"
+  while true; do
+    eval "$AWS_LS_CMD"
+    if [[ $? == 0 ]]; then
+      eval "$AWS_TRANSCRIBE_CMD"
+      break
+    else
+      sleep 3
+    fi
+  done
+}
 
-if [[ "$PLAY" = true ]]; then
-  cmd="${RTL_FM_CMD} | ${PLAY_CMD}"
-elif [[ "$STREAM" = true ]]; then
-  cmd="${RTL_FM_CMD} | ${CONVERT_CMD} | ${STREAM_CMD}"
-elif [[ "$SAR" = true ]]; then
-  cmd="nohup ${RTL_FM_CMD} | ${SAR_CMD}"
-elif [[ "$PLAY_SAR" = true ]]; then
-  cmd="${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
-fi
+RTL_FM_PROC_ID="$(pgrep rtl_fm -a | agrep "rtl_fm;-d ${DEVICE_ID}" | awk '{print $1}')"
 
-echo "$cmd"
-eval "$cmd"
+while true; do
+  FILENAME=$(inotifywait -q -e close_write --format %f "${RECORDINGS_DIRECTORY}")
+  if [[ $(echo "$FILENAME" | cut -d '.' -f 2) -eq 'mp3' ]]; then
+    create_transcribe_job "$FILENAME"
+  fi
 
-if [[ "$TRANSCRIBE" = true ]]; then
-  eval "$TRANSCRIBE_CMD"
-fi
+  is_proc_up="$(pgrep rtl_fm -a | agrep "rtl_fm;-d ${DEVICE_ID}" | awk '{print $1}')"
+  if [[ $RTL_FM_PROC_ID -ne $is_proc_up ]]; then
+    exit 0
+  fi
+done
