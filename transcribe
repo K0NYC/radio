@@ -59,7 +59,7 @@ while true; do
     create_transcribe_job "$FILENAME"
   fi
 
-  is_proc_up="$(ps -ef | grep "$RTL_FM_PROC_ID" | grep -v grep | awk '{print $2}')"
+  is_proc_up="$(pgrep rtl_fm -a | agrep "rtl_fm;-d ${DEVICE_ID}" | awk '{print $1}')"
   if [[ $RTL_FM_PROC_ID -ne $is_proc_up ]]; then
     exit 0
   fi
