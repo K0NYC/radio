@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
 usage() {
-    printf "                                                 \n"
-    printf "  Usage: rtl-fm-stop < device ID >               \n"
-    printf "                                                 \n"
-    printf "  Stops 'rtl_fm' and 'transcribe' if running.   \n"
-    printf "  After stopping 'rtl_fm' it waits 3 seconds     \n"
-    printf "  to let 'inotifywait' to trigger 'transcribe'   \n"
-    printf "  for the last recorded file.                    \n"
-    printf "                                                 \n"
+    printf "                                                \n"
+    printf "  Stops 'rtl_fm' if it's running.               \n"
+    printf "                                                \n"
+    printf "  Usage: rtl-fm-stop < device ID >              \n"
+    printf "                                                \n"
 }
 
 while true; do
@@ -18,19 +15,11 @@ while true; do
   esac
 done
 
-rtl_fm_proc_id="$(ps -ef | agrep "rtl_fm;-d ${DEVICE_ID}" | grep -v grep | awk '{print $2}')"
+rtl_fm_proc_id="$(pgrep rtl_fm -a | agrep "rtl_fm;-d ${DEVICE_ID}" | awk '{print $1}')"
 
 if [[ $rtl_fm_proc_id -gt 0 ]]; then
   kill "$rtl_fm_proc_id"
   echo "Stopped rtl_fm process ID ${rtl_fm_proc_id}"
 else
   echo "rtl_fm is not running"
-fi
-
-transcribe_proc_id="$(ps -ef | agrep "transcribe;device-${DEVICE_ID}" | grep -v grep  | awk '{print $2}')"
-
-if [[ $transcribe_proc_id -gt 0 ]]; then
-  sleep 3
-  kill "$transcribe_proc_id"
-  echo "Stopped transcribe process ID ${transcribe_proc_id"
 fi
