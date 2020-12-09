@@ -32,5 +32,5 @@ transcribe_proc_id="$(ps -ef | agrep "transcribe;device-${DEVICE_ID}" | grep -v 
 if [[ $transcribe_proc_id -gt 0 ]]; then
   sleep 3
   kill "$transcribe_proc_id"
-  echo "Stopped transcribe process ID ${inotifywait_proc_id}"
+  echo "Stopped transcribe process ID ${transcribe_proc_id"
 fi
