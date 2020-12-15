@@ -37,13 +37,17 @@ usage() {
     printf "    --transcribe          starts 'transcribe' script                             \n"
     printf "                          Can be used with '--sar' or '--play-sar' options only  \n"
     printf "                                                                                 \n"
+    printf "                                                                                 \n"
+    printf "    --deinvert <preset>   deinvert the transmission if it's scrambled,           \n"
+    printf "                          see https://github.com/windytan/deinvert for details   \n"
+    printf "                                                                                 \n"
     printf "  To stop 'rtl_fm' running on background or/and with '--transcribe' option       \n"
     printf "      use 'rtl-fm-stop' script                                                   \n"
     printf "                                                                                 \n"
     printf "                                                                                 \n"
 }
 
-TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,transcribe,sar:,play-sar: -n 'rtl-fm' -- "$@")
+TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,transcribe,deinvert:,sar:,play-sar: -n 'rtl-fm' -- "$@")
 
 if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
 
@@ -57,6 +61,7 @@ STREAM=false
 SAR=false
 PLAY_SAR=false
 TRANSCRIBE=false
+DEINVERT=false
 
 while true; do
   case "$1" in
@@ -78,6 +83,8 @@ while true; do
       STREAM=true; shift ;;
     --transcribe )
       TRANSCRIBE=true; shift ;;
+    --deinvert )
+      DEINVERT=true; DEINVERT_PRESET="$2"; shift 2 ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
@@ -101,15 +108,32 @@ STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
 SAR_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}/${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart &"
 PLAY_SAR_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - | rec -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 ${RECORDINGS_DIR}/${FILENAME}.mp3 sinc 400-3000 silence 1 0.1 1% 1 5.0 1% : newfile : restart"
 TRANSCRIBE_CMD="nohup transcribe --dir ${RECORDINGS_DIR} --device ${DEVICE_ID} &"
+DEINVERT_CMD="deinvert -r ${SAMPLE_RATE_VALUE} -p ${DEINVERT_PRESET}"
 
 if [[ "$PLAY" = true ]]; then
-  cmd="${RTL_FM_CMD} | ${PLAY_CMD}"
+  if [[ "$DEINVERT" = true ]]; then
+    cmd="${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${PLAY_CMD}"
+  else
+    cmd="${RTL_FM_CMD} | ${PLAY_CMD}"
+  fi
 elif [[ "$STREAM" = true ]]; then
-  cmd="${RTL_FM_CMD} | ${CONVERT_CMD} | ${STREAM_CMD}"
+  if [[ "$DEINVERT" = true ]]; then
+    cmd="${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${CONVERT_CMD} | ${STREAM_CMD}"
+  else
+    cmd="${RTL_FM_CMD} | ${CONVERT_CMD} | ${STREAM_CMD}"
+  fi
 elif [[ "$SAR" = true ]]; then
-  cmd="nohup ${RTL_FM_CMD} | ${SAR_CMD}"
+  if [[ "$DEINVERT" = true ]]; then
+    cmd="nohup ${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${SAR_CMD}"
+  else
+    cmd="nohup ${RTL_FM_CMD} | ${SAR_CMD}"
+  fi
 elif [[ "$PLAY_SAR" = true ]]; then
-  cmd="${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
+  if [[ "$DEINVERT" = true ]]; then
+    cmd="nohup ${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${PLAY_SAR_CMD}"
+  else
+    cmd="nohup ${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
+  fi
 fi
 
 echo "$cmd"
