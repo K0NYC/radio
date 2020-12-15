@@ -56,6 +56,7 @@ eval set -- "$TEMP"
 DEVICE="-d 0"
 DEVICE_ID=0
 SAMPLE_RATE=
+SAMPLE_RATE_VALUE=24000
 PLAY=false
 STREAM=false
 SAR=false
@@ -91,17 +92,21 @@ while true; do
 done
 
 RECORDINGS_DIR="$HOME/recordings/device-${DEVICE_ID}"
-
 if [[ ! -d "$RECORDINGS_DIR" ]]; then
   mkdir -p "$RECORDINGS_DIR"
 fi
-
-RTL_FM_CMD="rtl_fm ${MODE} ${FREQUENCIES} ${SQUELCH} ${GAIN} ${PPM_ERROR} ${SAMPLE_RATE} ${DEVICE}"
 
 if [[ $SAMPLE_RATE ]]; then
   SAMPLE_RATE_VALUE=$(echo "$SAMPLE_RATE" | cut -d " " -f 2)
 fi
 
+if [[ "$DEINVERT" = true ]]; then
+    if grep -i k <<< "${SAMPLE_RATE_VALUE}"; then
+      SAMPLE_RATE_VALUE="$(sed 's/[k,K]/000/g' <<< "${SAMPLE_RATE_VALUE}")"
+    fi
+fi
+
+RTL_FM_CMD="rtl_fm ${MODE} ${FREQUENCIES} ${SQUELCH} ${GAIN} ${PPM_ERROR} ${SAMPLE_RATE} ${DEVICE}"
 PLAY_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - sinc 400-3000"
 CONVERT_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000"
 STREAM_CMD="cvlc -v - --sout '#standard{access=http,mux=ogg,dst=0.0.0.0:8080}'"
