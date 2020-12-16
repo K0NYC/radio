@@ -13,10 +13,9 @@ usage() {
     printf "                                                                        \n"
 }
 
+# Define available options
 TEMP=$(getopt -o h -l dir:,device: -n 'transcribe' -- "$@")
-
 if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
-
 eval set -- "$TEMP"
 
 while true; do
@@ -28,6 +27,7 @@ while true; do
   esac
 done
 
+# Define defaults
 UPLOADS_BUCKET_NAME="radio-uploads"
 TRANSCRIPTIONS_BUCKET_NAME="radio-transcripts"
 
@@ -58,14 +58,20 @@ function create_transcribe_job() {
   done
 }
 
+# Get the ID of the rtl_fm process so we can monitor it and stop this script
+# when the main process exits because we don't need it to run anymore
 RTL_FM_PROC_ID="$(pgrep rtl_fm -a | agrep "rtl_fm;-d ${DEVICE_ID}" | awk '{print $1}')"
 
 while true; do
-  FILENAME=$(inotifywait -q -e close_write --format %f "${RECORDINGS_DIRECTORY}")
+  # Monitor the recordings directory for closed for write files that sox creates
+  # and create a transcript job for the new file
+  # This loop cycles when 'inotifywait' reports new file created
+  FILENAME="$(inotifywait -q -e close_write --format %f "${RECORDINGS_DIRECTORY}")"
   if [[ $(echo "$FILENAME" | cut -d '.' -f 2) -eq 'mp3' ]]; then
     create_transcribe_job "$FILENAME"
   fi
 
+  # Check if the same rtl_fm process running, exit if not
   is_proc_up="$(pgrep rtl_fm -a | agrep "rtl_fm;-d ${DEVICE_ID}" | awk '{print $1}')"
   if [[ $RTL_FM_PROC_ID -ne $is_proc_up ]]; then
     exit 0
