@@ -26,7 +26,7 @@ usage() {
     printf "                                                                                 \n"
     printf "    --sar filename        sound activated recording to a local file,             \n"
     printf "                          must provide filename without extension,               \n"
-    printf "                          starts with 'nohup' on background                      \n"
+    printf "                          runs on background                                     \n"
     printf "                                                                                 \n"
     printf "    --play-sar filename   sound activated recording to a local file with         \n"
     printf "                          sound played to the local sound card,                  \n"
@@ -41,18 +41,17 @@ usage() {
     printf "    --deinvert <preset>   deinvert the transmission if it's scrambled,           \n"
     printf "                          see https://github.com/windytan/deinvert for details   \n"
     printf "                                                                                 \n"
-    printf "  To stop 'rtl_fm' running on background or/and with '--transcribe' option       \n"
-    printf "      use 'rtl-fm-stop' script                                                   \n"
+    printf "  To stop 'rtl_fm' running on background use 'rtl-fm-stop' script                \n"
     printf "                                                                                 \n"
     printf "                                                                                 \n"
 }
 
+# Define available options
 TEMP=$(getopt -o M:f:l:g:p:s:d:h -l play,stream,transcribe,deinvert:,sar:,play-sar: -n 'rtl-fm' -- "$@")
-
 if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
-
 eval set -- "$TEMP"
 
+# Define defaults
 DEVICE="-d 0"
 DEVICE_ID=0
 SAMPLE_RATE=
@@ -91,21 +90,25 @@ while true; do
   esac
 done
 
+# Define recordings directory, create if necessary
 RECORDINGS_DIR="$HOME/recordings/device-${DEVICE_ID}"
 if [[ ! -d "$RECORDINGS_DIR" ]]; then
   mkdir -p "$RECORDINGS_DIR"
 fi
 
+# Get the sample rate value to pass it to piped commands
 if [[ $SAMPLE_RATE ]]; then
   SAMPLE_RATE_VALUE=$(echo "$SAMPLE_RATE" | cut -d " " -f 2)
 fi
 
+# Deinvert doesn't take short values like 30K so we convert it to 30000
 if [[ "$DEINVERT" = true ]]; then
     if grep -i k <<< "${SAMPLE_RATE_VALUE}"; then
       SAMPLE_RATE_VALUE="$(sed 's/[k,K]/000/g' <<< "${SAMPLE_RATE_VALUE}")"
     fi
 fi
 
+# Define commands with their parameters
 RTL_FM_CMD="rtl_fm ${MODE} ${FREQUENCIES} ${SQUELCH} ${GAIN} ${PPM_ERROR} ${SAMPLE_RATE} ${DEVICE}"
 PLAY_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - sinc 400-3000"
 CONVERT_CMD="sox -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - -t mp3 - sinc 400-3000"
@@ -115,35 +118,46 @@ PLAY_SAR_CMD="play -t raw -r ${SAMPLE_RATE_VALUE} -e s -b 16 -c 1 -V3 - | rec -t
 TRANSCRIBE_CMD="nohup transcribe --dir ${RECORDINGS_DIR} --device ${DEVICE_ID} &"
 DEINVERT_CMD="deinvert -r ${SAMPLE_RATE_VALUE} -p ${DEINVERT_PRESET}"
 
+# Combine executable command for 'Play' action
 if [[ "$PLAY" = true ]]; then
   if [[ "$DEINVERT" = true ]]; then
-    cmd="${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${PLAY_CMD}"
+    cmd="${RTL_FM_CMD} | ${DEINVERT_CMD} | ${PLAY_CMD}"
   else
     cmd="${RTL_FM_CMD} | ${PLAY_CMD}"
   fi
+
+# Combine executable command for 'Stream' action
 elif [[ "$STREAM" = true ]]; then
   if [[ "$DEINVERT" = true ]]; then
-    cmd="${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${CONVERT_CMD} | ${STREAM_CMD}"
+    cmd="${RTL_FM_CMD} | ${DEINVERT_CMD} | ${CONVERT_CMD} | ${STREAM_CMD}"
   else
     cmd="${RTL_FM_CMD} | ${CONVERT_CMD} | ${STREAM_CMD}"
   fi
+
+# Combine executable command for 'Sound Activated Recording' action
 elif [[ "$SAR" = true ]]; then
   if [[ "$DEINVERT" = true ]]; then
-    cmd="nohup ${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${SAR_CMD}"
+    cmd="${RTL_FM_CMD} | ${DEINVERT_CMD} | ${SAR_CMD}"
   else
-    cmd="nohup ${RTL_FM_CMD} | ${SAR_CMD}"
+    cmd="${RTL_FM_CMD} | ${SAR_CMD}"
   fi
+
+# Combine executable command for 'Play and Record' action
 elif [[ "$PLAY_SAR" = true ]]; then
   if [[ "$DEINVERT" = true ]]; then
-    cmd="nohup ${RTL_FM_CMD} | "${DEINVERT_CMD}" | ${PLAY_SAR_CMD}"
+    cmd="${RTL_FM_CMD} | ${DEINVERT_CMD} | ${PLAY_SAR_CMD}"
   else
-    cmd="nohup ${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
+    cmd="${RTL_FM_CMD} | ${PLAY_SAR_CMD}"
   fi
 fi
 
+# Print combined command for review/troubleshooting
 echo "$cmd"
+
+# Execute combined command
 eval "$cmd"
 
+# Launch transcribe script
 if [[ "$TRANSCRIBE" = true ]]; then
   eval "$TRANSCRIBE_CMD"
 fi
