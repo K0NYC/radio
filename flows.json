@@ -179,7 +179,7 @@
         "tab": "f07ec48b.ef4d18",
         "order": 5,
         "disp": true,
-        "width": "5",
+        "width": 4,
         "collapse": true
     },
     {
@@ -228,53 +228,18 @@
         "tab": "f07ec48b.ef4d18",
         "order": 4,
         "disp": true,
-        "width": "6",
+        "width": 4,
         "collapse": true
     },
     {
-        "id": "13ffa9dc.3910f6",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "5d440bf2.4ffbd4",
-        "order": 2,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "c6b2ad32.c723b",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "5d440bf2.4ffbd4",
-        "order": 4,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "513fc709.941318",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "5d440bf2.4ffbd4",
-        "order": 6,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "26d6a163.902a6e",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "5d440bf2.4ffbd4",
-        "order": 8,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "bd5fc595.afd038",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "5d440bf2.4ffbd4",
-        "order": 10,
-        "width": 2,
-        "height": 1
+        "id": "564a9c25.d8e644",
+        "type": "ui_group",
+        "name": "Frequencies",
+        "tab": "f07ec48b.ef4d18",
+        "order": 7,
+        "disp": true,
+        "width": "4",
+        "collapse": false
     },
     {
         "id": "fe2438ee.cbc208",
@@ -364,12 +329,12 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 700,
-        "y": 80,
+        "x": 680,
+        "y": 120,
         "wires": [
             [
                 "2eddd02d.9494e",
-                "1372fc61.b2d2e4"
+                "49b96395.51a17c"
             ]
         ]
     },
@@ -383,8 +348,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 320,
-        "y": 80,
+        "x": 240,
+        "y": 120,
         "wires": [
             [
                 "cb2b51b0.8fd79"
@@ -410,8 +375,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 80,
+        "x": 440,
+        "y": 120,
         "wires": [
             [
                 "a532c2b5.0e645"
@@ -422,7 +387,7 @@
         "id": "43f7d49c.ffdbcc",
         "type": "ui_switch",
         "z": "b77382f8.77c7d",
-        "name": "",
+        "name": "Play",
         "label": "Play",
         "tooltip": "",
         "group": "b22a2364.cc38",
@@ -441,17 +406,19 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 770,
-        "y": 660,
+        "x": 370,
+        "y": 580,
         "wires": [
-            []
+            [
+                "96049e44.e0374"
+            ]
         ]
     },
     {
         "id": "907d738c.fd8cd",
         "type": "ui_switch",
         "z": "b77382f8.77c7d",
-        "name": "",
+        "name": "Stream",
         "label": "Stream",
         "tooltip": "",
         "group": "b22a2364.cc38",
@@ -470,21 +437,22 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 780,
-        "y": 620,
+        "x": 380,
+        "y": 500,
         "wires": [
-            []
+            [
+                "85cdef37.77b13"
+            ]
         ]
     },
     {
         "id": "8d56fb06.269988",
         "type": "ui_form",
         "z": "b77382f8.77c7d",
-        "d": true,
-        "name": "",
+        "name": "Manual Frequencies",
         "label": "Frequencies",
-        "group": "8c1e6f34.9c377",
-        "order": 2,
+        "group": "564a9c25.d8e644",
+        "order": 1,
         "width": 0,
         "height": 0,
         "options": [
@@ -527,28 +495,13 @@
         "submit": "submit",
         "cancel": "cancel",
         "topic": "",
-        "x": 790,
-        "y": 540,
+        "x": 260,
+        "y": 440,
         "wires": [
-            []
+            [
+                "b66ac7ec.af33c8"
+            ]
         ]
-    },
-    {
-        "id": "8a1171eb.9fd1c",
-        "type": "debug",
-        "z": "b77382f8.77c7d",
-        "name": "join",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1230,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "6245de27.b49d2",
@@ -557,8 +510,8 @@
         "group": "8c1e6f34.9c377",
         "order": 0,
         "name": "",
-        "x": 80,
-        "y": 120,
+        "x": 60,
+        "y": 220,
         "wires": [
             [
                 "d8ec9a42.ad7708",
@@ -570,23 +523,6 @@
                 "bfaf7f07.07298"
             ]
         ]
-    },
-    {
-        "id": "59b3608b.13573",
-        "type": "debug",
-        "z": "b77382f8.77c7d",
-        "name": "split",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1090,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "aaab9f27.5d00d",
@@ -609,8 +545,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 610,
-        "y": 720,
+        "x": 510,
+        "y": 920,
         "wires": [
             [
                 "1f9286d6.927229"
@@ -640,8 +576,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 700,
-        "y": 120,
+        "x": 680,
+        "y": 160,
         "wires": [
             [
                 "2eddd02d.9494e"
@@ -658,8 +594,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 320,
-        "y": 120,
+        "x": 240,
+        "y": 160,
         "wires": [
             [
                 "a16e1a9e.e53868"
@@ -685,8 +621,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 120,
+        "x": 440,
+        "y": 160,
         "wires": [
             [
                 "13456858.9d9da8"
@@ -716,8 +652,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 710,
-        "y": 160,
+        "x": 690,
+        "y": 200,
         "wires": [
             [
                 "2eddd02d.9494e"
@@ -734,8 +670,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 330,
-        "y": 160,
+        "x": 250,
+        "y": 200,
         "wires": [
             [
                 "2695d9e.3731e26"
@@ -761,95 +697,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 160,
+        "x": 440,
+        "y": 200,
         "wires": [
             [
                 "5ce30fb1.879c2"
-            ]
-        ]
-    },
-    {
-        "id": "15981ea9.035411",
-        "type": "ui_button",
-        "z": "b77382f8.77c7d",
-        "name": "Start/Stop",
-        "group": "eed1c6f7.18a858",
-        "order": 1,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "{{label}}",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "{{colour}}",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 980,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d3ac86f3.522488",
-        "type": "inject",
-        "z": "b77382f8.77c7d",
-        "name": "",
-        "props": [
-            {
-                "p": "label",
-                "v": "Start",
-                "vt": "str"
-            },
-            {
-                "p": "colour",
-                "v": "green",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 990,
-        "y": 600,
-        "wires": [
-            [
-                "15981ea9.035411"
-            ]
-        ]
-    },
-    {
-        "id": "3f0b467.58a05ba",
-        "type": "inject",
-        "z": "b77382f8.77c7d",
-        "name": "",
-        "props": [
-            {
-                "p": "label",
-                "v": "Stop",
-                "vt": "str"
-            },
-            {
-                "p": "colour",
-                "v": "red",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 990,
-        "y": 680,
-        "wires": [
-            [
-                "15981ea9.035411"
             ]
         ]
     },
@@ -866,37 +718,9 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1010,
-        "y": 500,
+        "x": 350,
+        "y": 920,
         "wires": []
-    },
-    {
-        "id": "a95bee6e.9576a",
-        "type": "join",
-        "z": "b77382f8.77c7d",
-        "name": "",
-        "mode": "custom",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": ",",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "",
-        "reduceFixup": "",
-        "x": 1110,
-        "y": 80,
-        "wires": [
-            [
-                "8a1171eb.9fd1c"
-            ]
-        ]
     },
     {
         "id": "2eddd02d.9494e",
@@ -911,8 +735,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 950,
-        "y": 40,
+        "x": 870,
+        "y": 80,
         "wires": []
     },
     {
@@ -934,8 +758,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
-        "y": 720,
+        "x": 680,
+        "y": 920,
         "wires": [
             []
         ]
@@ -959,8 +783,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1300,
-        "y": 80,
+        "x": 1080,
+        "y": 120,
         "wires": [
             []
         ]
@@ -982,31 +806,11 @@
         "topic": "",
         "payload": "citywide_freq",
         "payloadType": "flow",
-        "x": 830,
-        "y": 500,
+        "x": 170,
+        "y": 920,
         "wires": [
             [
                 "830585ef.4ac068"
-            ]
-        ]
-    },
-    {
-        "id": "1372fc61.b2d2e4",
-        "type": "split",
-        "z": "b77382f8.77c7d",
-        "name": "",
-        "splt": "",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 950,
-        "y": 80,
-        "wires": [
-            [
-                "49b96395.51a17c",
-                "59b3608b.13573"
             ]
         ]
     },
@@ -1019,7 +823,7 @@
         "tooltip": "Sample Rate",
         "place": "",
         "group": "5d440bf2.4ffbd4",
-        "order": 5,
+        "order": 3,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -1033,7 +837,7 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 630,
+        "x": 670,
         "y": 280,
         "wires": [
             [
@@ -1078,7 +882,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 430,
+        "x": 470,
         "y": 280,
         "wires": [
             [
@@ -1109,7 +913,7 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 610,
+        "x": 650,
         "y": 320,
         "wires": [
             [
@@ -1154,7 +958,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
+        "x": 440,
         "y": 320,
         "wires": [
             [
@@ -1171,7 +975,7 @@
         "tooltip": "",
         "place": "",
         "group": "5d440bf2.4ffbd4",
-        "order": 3,
+        "order": 2,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -1185,7 +989,7 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 610,
+        "x": 650,
         "y": 240,
         "wires": [
             [
@@ -1230,7 +1034,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 410,
+        "x": 450,
         "y": 240,
         "wires": [
             [
@@ -1282,7 +1086,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
+        "x": 1060,
         "y": 240,
         "wires": [
             []
@@ -1301,8 +1105,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1470,
-        "y": 240,
+        "x": 370,
+        "y": 960,
         "wires": []
     },
     {
@@ -1322,8 +1126,8 @@
         "topic": "",
         "payload": "mode",
         "payloadType": "flow",
-        "x": 1280,
-        "y": 240,
+        "x": 180,
+        "y": 960,
         "wires": [
             [
                 "eb348c6b.099b5"
@@ -1349,7 +1153,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
+        "x": 1080,
         "y": 280,
         "wires": [
             []
@@ -1368,8 +1172,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1490,
-        "y": 280,
+        "x": 390,
+        "y": 1000,
         "wires": []
     },
     {
@@ -1389,8 +1193,8 @@
         "topic": "",
         "payload": "sample_rate",
         "payloadType": "flow",
-        "x": 1300,
-        "y": 280,
+        "x": 200,
+        "y": 1000,
         "wires": [
             [
                 "26f9ea4c.7cdb16"
@@ -1406,11 +1210,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1010,
-        "y": 780,
+        "x": 1270,
+        "y": 440,
         "wires": []
     },
     {
@@ -1432,7 +1237,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
+        "x": 1060,
         "y": 360,
         "wires": [
             []
@@ -1451,8 +1256,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1470,
-        "y": 320,
+        "x": 370,
+        "y": 1040,
         "wires": []
     },
     {
@@ -1472,8 +1277,8 @@
         "topic": "",
         "payload": "gain",
         "payloadType": "flow",
-        "x": 1280,
-        "y": 340,
+        "x": 180,
+        "y": 1040,
         "wires": [
             [
                 "cc5e11d2.206d7"
@@ -1488,7 +1293,7 @@
         "label": "",
         "tooltip": "",
         "group": "5d440bf2.4ffbd4",
-        "order": 9,
+        "order": 5,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -1511,15 +1316,15 @@
         "type": "ui_text",
         "z": "b77382f8.77c7d",
         "group": "5d440bf2.4ffbd4",
-        "order": 7,
+        "order": 4,
         "width": 4,
         "height": 1,
         "name": "Squelch",
         "label": "Squelch",
         "format": "{{msg.payload}}",
         "layout": "row-left",
-        "x": 620,
-        "y": 400,
+        "x": 420,
+        "y": 380,
         "wires": []
     },
     {
@@ -1541,7 +1346,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 810,
+        "x": 1070,
         "y": 400,
         "wires": [
             []
@@ -1560,8 +1365,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1260,
-        "y": 400,
+        "x": 380,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1581,8 +1386,8 @@
         "topic": "",
         "payload": "squelch",
         "payloadType": "flow",
-        "x": 1070,
-        "y": 400,
+        "x": 190,
+        "y": 1120,
         "wires": [
             [
                 "dfa2b04.fe9a75"
@@ -1609,7 +1414,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 800,
+        "x": 840,
         "y": 320,
         "wires": [
             [
@@ -1643,10 +1448,388 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1000,
+        "x": 1040,
         "y": 320,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "b66ac7ec.af33c8",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Manual Freqs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "manual_freqs",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 440,
+        "wires": [
+            [
+                "fb7746e3.fce888"
+            ]
+        ]
+    },
+    {
+        "id": "235d3169.839f6e",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test man_freq",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "manual_freqs",
+        "payloadType": "flow",
+        "x": 1290,
+        "y": 480,
+        "wires": [
+            [
+                "fb7746e3.fce888"
+            ]
+        ]
+    },
+    {
+        "id": "5cd0f9f1.dab398",
+        "type": "ui_switch",
+        "z": "b77382f8.77c7d",
+        "name": "Activate",
+        "label": "Activate",
+        "tooltip": "",
+        "group": "eed1c6f7.18a858",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "signal_wifi_3_bar",
+        "oncolor": "green",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "signal_wifi_0_bar",
+        "offcolor": "red",
+        "x": 180,
+        "y": 740,
+        "wires": [
+            [
+                "1d390a47.64ef46"
+            ]
+        ]
+    },
+    {
+        "id": "1d390a47.64ef46",
+        "type": "exec",
+        "z": "b77382f8.77c7d",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 330,
+        "y": 740,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8787b582.5f4e18",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set to enable Stream",
+        "rules": [
+            {
+                "t": "set",
+                "p": "stream",
+                "pt": "flow",
+                "to": "--stream",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85cdef37.77b13",
+        "type": "switch",
+        "z": "b77382f8.77c7d",
+        "name": "Check stream state",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 500,
+        "wires": [
+            [
+                "8787b582.5f4e18"
+            ],
+            [
+                "31781a5f.832d16"
+            ]
+        ],
+        "outputLabels": [
+            "on",
+            "off"
+        ]
+    },
+    {
+        "id": "31781a5f.832d16",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set to disable Stream",
+        "rules": [
+            {
+                "t": "set",
+                "p": "stream",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e84d7288.10a6a",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set to enable Play",
+        "rules": [
+            {
+                "t": "set",
+                "p": "play",
+                "pt": "flow",
+                "to": "--play",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96049e44.e0374",
+        "type": "switch",
+        "z": "b77382f8.77c7d",
+        "name": "Check play state",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 580,
+        "wires": [
+            [
+                "e84d7288.10a6a"
+            ],
+            [
+                "daf4d749.9f1438"
+            ]
+        ],
+        "outputLabels": [
+            "on",
+            "off"
+        ]
+    },
+    {
+        "id": "daf4d749.9f1438",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set to disable Play",
+        "rules": [
+            {
+                "t": "set",
+                "p": "play",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1de9b0f.29bb54f",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "play",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "d517d60e.d92498",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test play value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "play",
+        "payloadType": "flow",
+        "x": 200,
+        "y": 1180,
+        "wires": [
+            [
+                "1de9b0f.29bb54f"
+            ]
+        ]
+    },
+    {
+        "id": "55929b03.61e604",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "stream",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "d5ebeaab.07e3f8",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test stream value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stream",
+        "payloadType": "flow",
+        "x": 200,
+        "y": 1240,
+        "wires": [
+            [
+                "55929b03.61e604"
+            ]
+        ]
+    },
+    {
+        "id": "2cb59d96.f06452",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Set to none",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 200,
+        "y": 560,
+        "wires": [
+            [
+                "907d738c.fd8cd",
+                "43f7d49c.ffdbcc"
+            ]
         ]
     }
 ]
