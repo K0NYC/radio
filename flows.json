@@ -1,0 +1,1652 @@
+[
+    {
+        "id": "dfd378b4.85d128",
+        "type": "tab",
+        "label": "System",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b77382f8.77c7d",
+        "type": "tab",
+        "label": "Radio 0",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c2849b3.7733668",
+        "type": "tab",
+        "label": "Radio 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3ae03702.6cf7c8",
+        "type": "group",
+        "z": "dfd378b4.85d128",
+        "name": "System Temperature",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "fe2438ee.cbc208",
+            "4b6c1cb4.55ce54",
+            "6f467ac5.eb0754"
+        ],
+        "x": 74,
+        "y": 31.5,
+        "w": 512,
+        "h": 97
+    },
+    {
+        "id": "52bc8b6d.4ad574",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#646868",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#646868",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#646868",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#8a8e8e",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#646868",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Radio Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "true",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "7f0de3de.6266bc",
+        "type": "ui_tab",
+        "name": "System",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8b4f392b.3ed598",
+        "type": "ui_group",
+        "name": "System",
+        "tab": "7f0de3de.6266bc",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "f07ec48b.ef4d18",
+        "type": "ui_tab",
+        "name": "Radio 0",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8c1e6f34.9c377",
+        "type": "ui_group",
+        "name": "Brooklyn Police",
+        "tab": "f07ec48b.ef4d18",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "b22a2364.cc38",
+        "type": "ui_group",
+        "name": "Actions",
+        "tab": "f07ec48b.ef4d18",
+        "order": 5,
+        "disp": true,
+        "width": "5",
+        "collapse": true
+    },
+    {
+        "id": "234819b7.2d8c56",
+        "type": "ui_group",
+        "name": "Citywide police",
+        "tab": "f07ec48b.ef4d18",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "db20d127.e4cf1",
+        "type": "ui_group",
+        "name": "Manhattan police",
+        "tab": "f07ec48b.ef4d18",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "6b759525.0b49ec",
+        "type": "ui_tab",
+        "name": "Radio 1",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "eed1c6f7.18a858",
+        "type": "ui_group",
+        "name": "Controls",
+        "tab": "f07ec48b.ef4d18",
+        "order": 6,
+        "disp": false,
+        "width": "3",
+        "collapse": false
+    },
+    {
+        "id": "5d440bf2.4ffbd4",
+        "type": "ui_group",
+        "name": "Tuner Parameters",
+        "tab": "f07ec48b.ef4d18",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "13ffa9dc.3910f6",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "5d440bf2.4ffbd4",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "c6b2ad32.c723b",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "5d440bf2.4ffbd4",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "513fc709.941318",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "5d440bf2.4ffbd4",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "26d6a163.902a6e",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "5d440bf2.4ffbd4",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "bd5fc595.afd038",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "5d440bf2.4ffbd4",
+        "order": 10,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "fe2438ee.cbc208",
+        "type": "exec",
+        "z": "dfd378b4.85d128",
+        "g": "3ae03702.6cf7c8",
+        "command": "/home/rlevit/scripts/temperature",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Temperature",
+        "x": 350,
+        "y": 80,
+        "wires": [
+            [
+                "6f467ac5.eb0754"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4b6c1cb4.55ce54",
+        "type": "inject",
+        "z": "dfd378b4.85d128",
+        "g": "3ae03702.6cf7c8",
+        "name": "Trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 180,
+        "y": 80,
+        "wires": [
+            [
+                "fe2438ee.cbc208"
+            ]
+        ]
+    },
+    {
+        "id": "6f467ac5.eb0754",
+        "type": "ui_text",
+        "z": "dfd378b4.85d128",
+        "g": "3ae03702.6cf7c8",
+        "group": "8b4f392b.3ed598",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sys_temp",
+        "label": "System Temperature",
+        "format": "{{msg.payload}}℃",
+        "layout": "col-center",
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a532c2b5.0e645",
+        "type": "ui_dropdown",
+        "z": "b77382f8.77c7d",
+        "name": "Citywide police",
+        "label": "",
+        "tooltip": "",
+        "place": "",
+        "group": "234819b7.2d8c56",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "multiple": true,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 700,
+        "y": 80,
+        "wires": [
+            [
+                "2eddd02d.9494e",
+                "1372fc61.b2d2e4"
+            ]
+        ]
+    },
+    {
+        "id": "d8ec9a42.ad7708",
+        "type": "function",
+        "z": "b77382f8.77c7d",
+        "name": "Citywide police",
+        "func": "// This mapping file uses {\"name\":\"value\"} pairs to pre-fill the drop-down widget in the dashboard\n\nmsg.payload = \n[ \n    {\"NYPD CW 1\":\"470.6875\"},\n    {\"NYPD CW 2\":\"470.7125\"},\n    {\"NYPD CW 3\":\"470.8625\"},\n    {\"NYPD CW 4\":\"470.8875\"},\n    {\"NYPD SI CW 1\":\"482.6625\"},\n    {\"NYPD SI CW 2\":\"482.6375\"},\n    {\"NYPD SI CW 3\":\"482.4375\"},\n    {\"NYPD SI Traffic\":\"482.4625\"},\n    {\"NYPD Traffic\":\"470.8125\"},\n    {\"NYPD WTC\":\"470.6625\"}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "cb2b51b0.8fd79"
+            ]
+        ]
+    },
+    {
+        "id": "cb2b51b0.8fd79",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "a532c2b5.0e645"
+            ]
+        ]
+    },
+    {
+        "id": "43f7d49c.ffdbcc",
+        "type": "ui_switch",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "label": "Play",
+        "tooltip": "",
+        "group": "b22a2364.cc38",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 770,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "907d738c.fd8cd",
+        "type": "ui_switch",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "label": "Stream",
+        "tooltip": "",
+        "group": "b22a2364.cc38",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 780,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d56fb06.269988",
+        "type": "ui_form",
+        "z": "b77382f8.77c7d",
+        "d": true,
+        "name": "",
+        "label": "Frequencies",
+        "group": "8c1e6f34.9c377",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "",
+                "value": "Frequency 1",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "",
+                "value": "Frequency 2",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "",
+                "value": "Frequency 3",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "",
+                "value": "Frequency 4",
+                "type": "text",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Frequency 1": "",
+            "Frequency 2": "",
+            "Frequency 3": "",
+            "Frequency 4": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 790,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a1171eb.9fd1c",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "join",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "6245de27.b49d2",
+        "type": "hidden-ui-load",
+        "z": "b77382f8.77c7d",
+        "group": "8c1e6f34.9c377",
+        "order": 0,
+        "name": "",
+        "x": 80,
+        "y": 120,
+        "wires": [
+            [
+                "d8ec9a42.ad7708",
+                "fd6856a4.b554e8",
+                "9016f9d2.852d18",
+                "fb0e5184.463a7",
+                "936c51b2.5aa69",
+                "566db21e.ea132c",
+                "bfaf7f07.07298"
+            ]
+        ]
+    },
+    {
+        "id": "59b3608b.13573",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "split",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "aaab9f27.5d00d",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 610,
+        "y": 720,
+        "wires": [
+            [
+                "1f9286d6.927229"
+            ]
+        ]
+    },
+    {
+        "id": "13456858.9d9da8",
+        "type": "ui_dropdown",
+        "z": "b77382f8.77c7d",
+        "name": "Brooklyn police",
+        "label": "",
+        "tooltip": "",
+        "place": "",
+        "group": "8c1e6f34.9c377",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "multiple": true,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 700,
+        "y": 120,
+        "wires": [
+            [
+                "2eddd02d.9494e"
+            ]
+        ]
+    },
+    {
+        "id": "fd6856a4.b554e8",
+        "type": "function",
+        "z": "b77382f8.77c7d",
+        "name": "Brooklyn police",
+        "func": "// This mapping file uses {\"name\":\"value\"} pairs to pre-fill the drop-down widget in the dashboard\n\nmsg.payload = \n[ \n    {\"Patrol Boro Brooklyn\":\"470.987500\"},\n    {\"Precincts 72, 76, 78\":\"476.412500\"},\n    {\"Precincts 60, 61\":\"476.462500\"},\n    {\"Precincts 62, 68\":\"476.512500\"},\n    {\"Precincts 90, 94\":\"476.687500\"},\n    {\"Precincts 77, 79\":\"476.737500\"},\n    {\"Precincts 84,88\":\"476.762500\"},\n    {\"Precincts 81, 83\":\"476.787500\"},\n    {\"Precincts 66, 70\":\"476.862500\"},\n    {\"Precincts 63, 69\":\"476.937500\"},\n    {\"Precincts 73, 75\":\"476.987500\"},\n    {\"Precincts 67, 71\":\"477.012500\"}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "a16e1a9e.e53868"
+            ]
+        ]
+    },
+    {
+        "id": "a16e1a9e.e53868",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "13456858.9d9da8"
+            ]
+        ]
+    },
+    {
+        "id": "5ce30fb1.879c2",
+        "type": "ui_dropdown",
+        "z": "b77382f8.77c7d",
+        "name": "Manhattan police",
+        "label": "",
+        "tooltip": "",
+        "place": "",
+        "group": "db20d127.e4cf1",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "multiple": true,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 710,
+        "y": 160,
+        "wires": [
+            [
+                "2eddd02d.9494e"
+            ]
+        ]
+    },
+    {
+        "id": "9016f9d2.852d18",
+        "type": "function",
+        "z": "b77382f8.77c7d",
+        "name": "Manhattan police",
+        "func": "// This mapping file uses {\"name\":\"value\"} pairs to pre-fill the drop-down widget in the dashboard\n\nmsg.payload = \n[ \n    {\"Patrol Boro Brooklyn\tWIK933\":\"470.987500\"},\n    {\"Precincts 72, 76, 78\tWIF555\":\"476.412500\"},\n    {\"Precincts 60, 61\tWIF557\":\"476.462500\"},\n    {\"Precincts 62, 68\tWIF580\":\"476.512500\"},\n    {\"Precincts 90, 94\tWIF546\":\"476.687500\"},\n    {\"Precincts 77, 79\tWIF540\":\"476.737500\"},\n    {\"Precincts 84,88\tWIF556\":\"476.762500\"},\n    {\"Precincts 81, 83\tWIF554\":\"476.787500\"},\n    {\"Precincts 66, 70\tWIF551\":\"476.862500\"},\n    {\"Precincts 63, 69\tWIF574\":\"476.937500\"},\n    {\"Precincts 73, 75\tWIF553\":\"476.987500\"},\n    {\"Precincts 67, 71\tWIF581\":\"477.012500\"}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "2695d9e.3731e26"
+            ]
+        ]
+    },
+    {
+        "id": "2695d9e.3731e26",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "5ce30fb1.879c2"
+            ]
+        ]
+    },
+    {
+        "id": "15981ea9.035411",
+        "type": "ui_button",
+        "z": "b77382f8.77c7d",
+        "name": "Start/Stop",
+        "group": "eed1c6f7.18a858",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "{{label}}",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "{{colour}}",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 980,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3ac86f3.522488",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "props": [
+            {
+                "p": "label",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "p": "colour",
+                "v": "green",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 990,
+        "y": 600,
+        "wires": [
+            [
+                "15981ea9.035411"
+            ]
+        ]
+    },
+    {
+        "id": "3f0b467.58a05ba",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "props": [
+            {
+                "p": "label",
+                "v": "Stop",
+                "vt": "str"
+            },
+            {
+                "p": "colour",
+                "v": "red",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 990,
+        "y": 680,
+        "wires": [
+            [
+                "15981ea9.035411"
+            ]
+        ]
+    },
+    {
+        "id": "830585ef.4ac068",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "freq",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a95bee6e.9576a",
+        "type": "join",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ",",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1110,
+        "y": 80,
+        "wires": [
+            [
+                "8a1171eb.9fd1c"
+            ]
+        ]
+    },
+    {
+        "id": "2eddd02d.9494e",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "freq",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "1f9286d6.927229",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "complete",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "49b96395.51a17c",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "set_citywide_freq_var",
+        "rules": [
+            {
+                "t": "set",
+                "p": "citywide_freq",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66072eb.cb7b6d",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "citywide_freq",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "citywide_freq",
+        "payloadType": "flow",
+        "x": 830,
+        "y": 500,
+        "wires": [
+            [
+                "830585ef.4ac068"
+            ]
+        ]
+    },
+    {
+        "id": "1372fc61.b2d2e4",
+        "type": "split",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "splt": "",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 950,
+        "y": 80,
+        "wires": [
+            [
+                "49b96395.51a17c",
+                "59b3608b.13573"
+            ]
+        ]
+    },
+    {
+        "id": "40600acf.3534c4",
+        "type": "ui_dropdown",
+        "z": "b77382f8.77c7d",
+        "name": "Sample Rate",
+        "label": "Sample Rate",
+        "tooltip": "Sample Rate",
+        "place": "",
+        "group": "5d440bf2.4ffbd4",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 630,
+        "y": 280,
+        "wires": [
+            [
+                "1f6806b8.4f18f9"
+            ]
+        ]
+    },
+    {
+        "id": "fb0e5184.463a7",
+        "type": "function",
+        "z": "b77382f8.77c7d",
+        "name": "Sample Rate",
+        "func": "// This mapping file uses {\"name\":\"value\"} pairs to pre-fill the drop-down widget in the dashboard\n\nmsg.payload = \n[ \n    {\"24K\":\"24000\"},\n    {\"30K\":\"30000\"},\n    {\"32K\":\"32000\"},\n    {\"41K\":\"41000\"}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "b8e05207.63c93"
+            ]
+        ]
+    },
+    {
+        "id": "b8e05207.63c93",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set Sample Rate values",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "40600acf.3534c4"
+            ]
+        ]
+    },
+    {
+        "id": "dace8aeb.b07b48",
+        "type": "ui_dropdown",
+        "z": "b77382f8.77c7d",
+        "name": "Gain",
+        "label": "Gain",
+        "tooltip": "",
+        "place": "",
+        "group": "5d440bf2.4ffbd4",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "66bd3150.fca6e"
+            ]
+        ]
+    },
+    {
+        "id": "936c51b2.5aa69",
+        "type": "function",
+        "z": "b77382f8.77c7d",
+        "name": "Gain",
+        "func": "// This mapping file uses {\"name\":\"value\"} pairs to pre-fill the drop-down widget in the dashboard\n\nmsg.payload = \n[ \n    {\"Auto\":\"auto\"},\n    {\"0.0\":\"0.0\"},\n    {\"0.9\":\"0.9\"},\n    {\"1.4\":\"1.4\"},\n    {\"2.7\":\"2.7\"},\n    {\"3.7\":\"3.7\"},\n    {\"7.7\":\"7.7\"},\n    {\"8.7\":\"8.7\"},\n    {\"12.5\":\"12.5\"},\n    {\"14.4\":\"14.4\"},\n    {\"15.7\":\"15.7\"},\n    {\"16.6\":\"16.6\"},\n    {\"19.7\":\"19.7\"},\n    {\"20.7\":\"20.7\"},\n    {\"22.9\":\"22.9\"},\n    {\"25.4\":\"25.4\"},\n    {\"28.0\":\"28.0\"},\n    {\"29.7\":\"29.7\"},\n    {\"32.8\":\"32.8\"},\n    {\"33.8\":\"33.8\"},\n    {\"36.4\":\"36.4\"},\n    {\"37.2\":\"37.2\"},\n    {\"38.6\":\"38.6\"},\n    {\"40.2\":\"40.2\"},\n    {\"42.1\":\"42.1\"},\n    {\"43.4\":\"43.4\"},\n    {\"43.9\":\"43.9\"},\n    {\"44.5\":\"44.5\"},\n    {\"48.0\":\"48.0\"},\n    {\"49.6\":\"49.6\"}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "b229b3f7.646f"
+            ]
+        ]
+    },
+    {
+        "id": "b229b3f7.646f",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set Gain values",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "dace8aeb.b07b48"
+            ]
+        ]
+    },
+    {
+        "id": "1713c260.b220ae",
+        "type": "ui_dropdown",
+        "z": "b77382f8.77c7d",
+        "name": "Mode",
+        "label": "Mode",
+        "tooltip": "",
+        "place": "",
+        "group": "5d440bf2.4ffbd4",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "a84f0a7a.439ce8"
+            ]
+        ]
+    },
+    {
+        "id": "566db21e.ea132c",
+        "type": "function",
+        "z": "b77382f8.77c7d",
+        "name": "Mode",
+        "func": "// This mapping file uses {\"name\":\"value\"} pairs to pre-fill the drop-down widget in the dashboard\n\nmsg.payload = \n[ \n    {\"fm\":\"fm\"},\n    {\"wbfm\":\"wbfm\"},\n    {\"am\":\"am\"}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "545f062a.ee4e78"
+            ]
+        ]
+    },
+    {
+        "id": "545f062a.ee4e78",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Set Mode values",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "1713c260.b220ae"
+            ]
+        ]
+    },
+    {
+        "id": "bfaf7f07.07298",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Device Index",
+        "rules": [
+            {
+                "t": "set",
+                "p": "device_index",
+                "pt": "flow",
+                "to": "-d 0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 230,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a84f0a7a.439ce8",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Mode to option",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mode",
+                "pt": "flow",
+                "to": "$join(['-f', msg.payload], ' ')\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb348c6b.099b5",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "mode",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "27054315.e0b78c",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test mode value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "mode",
+        "payloadType": "flow",
+        "x": 1280,
+        "y": 240,
+        "wires": [
+            [
+                "eb348c6b.099b5"
+            ]
+        ]
+    },
+    {
+        "id": "1f6806b8.4f18f9",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Sample Rate to option",
+        "rules": [
+            {
+                "t": "set",
+                "p": "sample_rate",
+                "pt": "flow",
+                "to": "$join(['-s', $formatNumber(msg.payload, '#####')], ' ')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26f9ea4c.7cdb16",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "sample_rate",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1490,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "81443541.d20fd8",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test sample rate value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sample_rate",
+        "payloadType": "flow",
+        "x": 1300,
+        "y": 280,
+        "wires": [
+            [
+                "26f9ea4c.7cdb16"
+            ]
+        ]
+    },
+    {
+        "id": "fb7746e3.fce888",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "942a1ff5.41cc4",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Gain to option",
+        "rules": [
+            {
+                "t": "set",
+                "p": "gain",
+                "pt": "flow",
+                "to": "$join(['-g', $formatNumber(msg.payload, '#0.0;(#0.0)')], ' ')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc5e11d2.206d7",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "gain",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "ac1e35e9.281148",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test gain value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "gain",
+        "payloadType": "flow",
+        "x": 1280,
+        "y": 340,
+        "wires": [
+            [
+                "cc5e11d2.206d7"
+            ]
+        ]
+    },
+    {
+        "id": "4004e33f.b5ec7c",
+        "type": "ui_slider",
+        "z": "b77382f8.77c7d",
+        "name": "Squelch",
+        "label": "",
+        "tooltip": "",
+        "group": "5d440bf2.4ffbd4",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "outs": "all",
+        "topic": "",
+        "min": "50",
+        "max": "100",
+        "step": 1,
+        "x": 220,
+        "y": 400,
+        "wires": [
+            [
+                "b8d8dc92.01a7",
+                "df5fcf6c.13517"
+            ]
+        ]
+    },
+    {
+        "id": "b8d8dc92.01a7",
+        "type": "ui_text",
+        "z": "b77382f8.77c7d",
+        "group": "5d440bf2.4ffbd4",
+        "order": 7,
+        "width": 4,
+        "height": 1,
+        "name": "Squelch",
+        "label": "Squelch",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 620,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "df5fcf6c.13517",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Squelch to option",
+        "rules": [
+            {
+                "t": "set",
+                "p": "squelch",
+                "pt": "flow",
+                "to": "$join(['-l', $formatNumber(msg.payload, '##')], ' ')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfa2b04.fe9a75",
+        "type": "debug",
+        "z": "b77382f8.77c7d",
+        "name": "squelch",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a7a027b5.041ac8",
+        "type": "inject",
+        "z": "b77382f8.77c7d",
+        "name": "Test squelch value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "squelch",
+        "payloadType": "flow",
+        "x": 1070,
+        "y": 400,
+        "wires": [
+            [
+                "dfa2b04.fe9a75"
+            ]
+        ]
+    },
+    {
+        "id": "66bd3150.fca6e",
+        "type": "switch",
+        "z": "b77382f8.77c7d",
+        "name": "auto or number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "auto",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 800,
+        "y": 320,
+        "wires": [
+            [
+                "55dc43f2.d298ec"
+            ],
+            [
+                "942a1ff5.41cc4"
+            ]
+        ],
+        "outputLabels": [
+            "auto",
+            "number"
+        ]
+    },
+    {
+        "id": "55dc43f2.d298ec",
+        "type": "change",
+        "z": "b77382f8.77c7d",
+        "name": "Gain auto",
+        "rules": [
+            {
+                "t": "set",
+                "p": "gain",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    }
+]
