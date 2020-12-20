@@ -1,9 +1,0 @@
-[{"A 2m 146.520":"146.520"},
-{"A 70 cm 446.000":"446.000"},
-{"Snug temperature":"snug/temperature"}, 
-{"Studio temperature":"studio/temperature"},
-{"Study temperature":"study/temperature"},
-{"Rear bedroom temperature":"rear_bedroom/temperature"},
-{"Rear bedroom humidity":"rear_bedroom/humidity"},
-{"Rear bedroom":"rear_bedroom/humidity"}]
-
