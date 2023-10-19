@@ -13,7 +13,7 @@ usage() {
     printf "        wbfm == -M fm -s 170k -o 4 -A fast -r 32k -l 0 -E deemp                  \n"
     printf "        raw mode outputs 2x16 bit IQ pairs                                       \n"
     printf "    [-s sample rate (default: 24k)]                                              \n"
-    printf "    [-ps playback sample rate (default: 24k)]                                    \n"
+    printf "    [-r playback sample rate (default: 24k)]                                    \n"
     printf "    [-d device index (default: 0)]                                               \n"
     printf "    [-g tuner gain (default: automatic)]                                         \n"
     printf "    [-l squelch level (default: 0/off)]                                          \n"
@@ -48,7 +48,7 @@ usage() {
 }
 
 # Define available options
-TEMP=$(getopt -o M:f:l:g:p:s:ps:d:h -l play,stream,transcribe,deinvert:,sar:,play-sar: -n 'rtl-fm' -- "$@")
+TEMP=$(getopt -o M:f:l:g:p:s:r:d:h -l play,stream,transcribe,deinvert:,sar:,play-sar: -n 'rtl-fm' -- "$@")
 if [[ $? != 0 ]]; then echo "Terminating..." >&2 ; exit 1 ; fi
 eval set -- "$TEMP"
 
@@ -74,7 +74,7 @@ while true; do
     -g ) GAIN="$1 $2"; shift 2 ;;
     -p ) PPM_ERROR="$1 $2"; shift 2 ;;
     -s ) SAMPLE_RATE="$1 $2"; shift 2 ;;
-    -ps ) PLAYBACK_SAMPLE_RATE="$1 $2"; shift 2 ;;
+    -r ) PLAYBACK_SAMPLE_RATE="$1 $2"; shift 2 ;;
     -d ) DEVICE="$1 $2"; DEVICE_ID="$2"; shift 2 ;;
     -h ) usage; exit 0 ;;
     --sar )
